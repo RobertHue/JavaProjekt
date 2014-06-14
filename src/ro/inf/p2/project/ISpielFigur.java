@@ -15,10 +15,14 @@ public interface ISpielFigur {
 	 * @return
 	 */
 	public boolean gueltigeBewegungsRichtung( int posX, int posY);
+	
+	// Setter:
 	public void positionAendern(int x, int y);
+	public void setzteSprungFaehigkeit(boolean status);
 	
 	// Getter:
 	public int gibPosX();
 	public int gibPosY();
-	public int gibFarbe();	 
+	public int gibFarbe();	
+	public boolean kannIchSpringen();
 }

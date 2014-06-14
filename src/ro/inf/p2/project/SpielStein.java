@@ -9,7 +9,7 @@ public class SpielStein implements ISpielFigur{
 	protected int posX;
 	protected int posY;
 	private int farbe;	// 0=schwarz, 1=weiss
-	
+	private boolean kannSpringen;
 
 	//**********************
 	// Konstruktor
@@ -18,6 +18,9 @@ public class SpielStein implements ISpielFigur{
 		this.posX = posX;
 		this.posY = posY;
 		this.farbe = farbe;
+		
+		// by default
+		this.kannSpringen = false;
 	}
 
 	
@@ -53,6 +56,10 @@ public class SpielStein implements ISpielFigur{
 		this.posX = x;
 		this.posY = y;
 	}
+	public void setzteSprungFaehigkeit(boolean status)
+	{
+		this.kannSpringen = status;
+	}
 
 	
 	
@@ -69,6 +76,10 @@ public class SpielStein implements ISpielFigur{
 
 	public int gibFarbe() {
 		return this.farbe;
+	}
+	public boolean kannIchSpringen()
+	{
+		return this.kannSpringen;
 	}
 
 }

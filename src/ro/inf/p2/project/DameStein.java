@@ -13,6 +13,8 @@ public class DameStein extends SpielStein{
 	}
 
 
+	
+	
 	public boolean gueltigeBewegungsRichtung( int posX, int posY)
 	{
 		boolean result = true;
