@@ -38,7 +38,7 @@ public class Spieler implements ISpieler  {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+	 
 	
 	
 
