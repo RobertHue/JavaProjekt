@@ -17,6 +17,13 @@ public interface ISpieler {
 	String gibName();
 	
 
+	
+	
+	
 	// ISpielFigur gibFigur(int posX, int posY); 
 	// -> brauchen wir wahrscheinlich eher nicht
+	
+	
+	
+	
 }
