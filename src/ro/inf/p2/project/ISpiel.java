@@ -12,7 +12,7 @@ public interface ISpiel {
 
 
 
-	boolean istAmZug();		
+	boolean  istAmZug();		
 	boolean hatGewonnen();
 	
 
@@ -21,22 +21,26 @@ public interface ISpiel {
 	
 	
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwartz();
+	public ArrayList<ISpielFigur> gibSpielFigurenWeiss();
+
 	
-	
-	
-	
+	public ISpieler pruefeObGewonnen();
+	public ISpieler gibIstAmZug();
+	public ISpielFigur gibSelektierteFigur();
 	
 	/*
 	 * istAmZug() ISpieler
 	 * hatGewonnen() ISpieler
 	 * gibSpielFigurenSchwartz() ArrayList <ISpielFigur>
 	 * gibSpielFigurenWeiß() ArrayList <ISpielFigur>
+	 * 
 	 * prüfeObGewonnen() ISpieler
 	 * gibSelektierteFigur () ISpielFigur
-	 * gibIstAmZug () ISpieler
-	 * zugBeenden () void
-	 * neustarten () void
-	 * aufgeben () void
+	 * gibIstAmZug () ISpieler			
+	 * 
+	 * zugBeenden () void				Contr
+	 * neustarten () void				Contr
+	 * aufgeben () void					Contr
 	 * 
 	 */
 	
