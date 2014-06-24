@@ -18,6 +18,7 @@ public class SpielFeld implements ISpielFeld {
 	
 	public SpielFeld() {
 		// ruft den Konstruktor von Spieler auf
+		// jetzt pushe dich halt!!!!
 		spielerSchwarz = new Spieler(0);	// Spieler mit schwarzen SpielFiguren
  		spielerWeiss   = new Spieler(1);	// Spieler mit weiﬂen SpielFiguren
 	}
