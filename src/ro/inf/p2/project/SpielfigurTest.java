@@ -1,6 +1,7 @@
 package ro.inf.p2.project;
 
 import static org.junit.Assert.*;
+import junit.framework.TestCase;
 
 import org.junit.Test;
 

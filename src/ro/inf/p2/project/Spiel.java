@@ -2,10 +2,6 @@ package ro.inf.p2.project;
 
 import java.util.ArrayList;
 
-import com.sun.glass.ui.Size;
-
-//import java.util.ArrayList;
-
 public class Spiel implements ISpiel  {
 		
 	

@@ -11,15 +11,6 @@ public class Spieler implements ISpieler  {
 	
 	
 	
-	
-		
-	public boolean entferneSpielFigur(int posX, int posY) {		//?? Zwei mal entferneSpielfigur
-		//TODO
-		
-			
-		return false;
-	}
-	
 	/**
 	 * Check ob figur existiert, 
 	 * wenn true dann loeschen und return true,
@@ -58,6 +49,9 @@ public class Spieler implements ISpieler  {
 		return figuren.size();		
 	}
 
+	/**
+	 * Gibt alle Figuren zurück. Schwartz & Weiss
+	 */
 	
 	public ArrayList<ISpielFigur> gibFiguren() {
 		return this.figuren;				

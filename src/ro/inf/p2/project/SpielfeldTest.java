@@ -2,17 +2,63 @@ package ro.inf.p2.project;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
-public class SpielfeldTest {
+import ro.inf.p2.project.SpielfeldTest;
 
+public class SpielfeldTest<ISpielFigur> extends TestCase{
+	
+	
+	
+			private static Logger logger =
+						Logger.getLogger(SpielfeldTest.class.getName());
+	
+	
+			public ArrayList<SpielStein> figuren;
+			ArrayList<SpielStein> spielerSchwarz  = new ArrayList<SpielStein>( ) ;
+			ArrayList<SpielStein> spielerWeiss = new ArrayList<SpielStein>();
+			
+		
+			
+			
+			
+			int posX;
+			int posY;
+			
+			
+			public <spielerSchwarz> int setSpieler(int posX, int posY){
+				
+					spielerSchwarz.set(posX, arg1)
+				
+				return posX & posY;
+			}
+		
+			
+			
+			
+			
 	@Test
 	public void testUpdateStatus() {
 		fail("Not yet implemented");
 	}
 
 	@Test
-	public void testFigurSelektieren() {
+	public void testFigurSelektieren( ) {
+		
+		
+		SpielFeld r1 = new SpielFeld ();
+		
+		
+		assertTrue(r1.figurSelektieren(  null, posX, posY) ==1 );// 1 Fehlercode fuer leeres Feld
+		
+		
+		
+		
 		fail("Not yet implemented");
 	}
 

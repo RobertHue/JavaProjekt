@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface ISpieler {
 
-	boolean entferneSpielFigur(int posX, int posY);
+	
 	boolean entferneSpielFigur(ISpielFigur figur);
 	void fuegeDameZurListeHinzu(ISpielFigur figur);
 	
