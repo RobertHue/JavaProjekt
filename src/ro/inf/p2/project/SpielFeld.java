@@ -17,9 +17,10 @@ public class SpielFeld implements ISpielFeld {
 
 	
 	public SpielFeld() {
-		// TODO benötigt noch die Spieler-Klasse
-//		spielerSchwarz = new Spieler(0);	// Spieler mit schwarzen SpielFiguren
-// 		spielerWeiss   = new Spieler(1);	// Spieler mit weißen SpielFiguren
+		// ruft den Konstruktor von Spieler auf
+		// jetzt pushe dich halt!!!!
+		spielerSchwarz = new Spieler(0);	// Spieler mit schwarzen SpielFiguren
+ 		spielerWeiss   = new Spieler(1);	// Spieler mit weißen SpielFiguren
 	}
 	
 	/**
