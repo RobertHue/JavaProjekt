@@ -15,16 +15,19 @@ public class DameStein extends SpielStein{
 
 	
 	
-	public boolean gueltigeBewegungsRichtung( int posX, int posY)
+	public boolean gueltigeBewegung( int posX, int posY)
 	{
 		boolean result = true;
-		int diffX = posX-this.gibPosX();
-		int diffY = posY-this.gibPosY();
+		int diffX = Math.abs(posX-this.gibPosX());
+		int diffY = Math.abs(posY-this.gibPosY());
+
+		// Bewegung ist länger als ein Sprung
+		if(diffX > 2)	return false;
+		if(diffY > 2)	return false;
 		
 		// Dame erhält zusätzliche Bewegungsrichtungen
 		// -> unabhängig von der Farbe werden die Richtungsvektoren (1,1)(1,-1)(-1,1)(-1,-1) überprüft
-		if(!((diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
-				(diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ))
+		if( !((diffX == 1 && diffY ==1) || (diffX == 2 && diffY == 2)) )
 		{
 				result = false;		// Bew. nicht möglich
 		}
