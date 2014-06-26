@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class DameTest extends TestCase {
+public class TestDame extends TestCase {
 	
 	int MaxPosX = 7;
 	int MaxPosY = 7;

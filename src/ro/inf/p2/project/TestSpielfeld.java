@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import ro.inf.p2.project.SpielfeldTest;
 
-public class SpielfeldTest<ISpielFigur> extends TestCase{
+public class TestSpielfeld<ISpielFigur> extends TestCase{
 	
 	
 	

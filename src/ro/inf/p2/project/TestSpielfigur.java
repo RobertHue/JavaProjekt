@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class SpielfigurTest {
+public class TestSpielfigur {
 
 	@Test
 	public void testGueltigeBewegungsRichtung() {
