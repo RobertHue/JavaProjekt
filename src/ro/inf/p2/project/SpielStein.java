@@ -10,7 +10,7 @@ public class SpielStein implements ISpielFigur{
 	protected int posY;
 	private int farbe;	// 0=schwarz, 1=weiss
 	private boolean kannSpringen;
-
+ 
 	//**********************
 	// Konstruktor
 	//**********************
@@ -33,17 +33,17 @@ public class SpielStein implements ISpielFigur{
 		
 		if(this.gibFarbe()==0)
 		{
-			// für Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
+			// fï¿½r Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
 			if(  !((diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
 				   (diffX == -2 && diffY ==2) || (diffX == 2 && diffY == 2))  )
-				result = false;		// Bew. nicht möglich
+				result = false;		// Bew. nicht mî’lich
 		}
 		else if(this.gibFarbe()==1)
 		{
-			// für Weiß  sind es die Richtungsvektoren (1,-1) und (-1,-1)
+			// fï¿½r Weiï¾Ÿ  sind es die Richtungsvektoren (1,-1) und (-1,-1)
 			if(  !((diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ||
 				   (diffX == 2 && diffY == -2) || (diffX == -2 && diffY == -2))  )
-				result = false;		// Bew. nicht möglich			
+				result = false;		// Bew. nicht mî’lich			
 		}
 		
 		return result;
