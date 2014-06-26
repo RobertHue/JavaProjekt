@@ -2,7 +2,8 @@ package ro.inf.p2.project;
 import java.util.ArrayList;
 
 /**
-*@author Pascal
+*@author Pascal Zimmermann
+*@date 26.06.14
 */
 public interface ISpielfeldAnzeige {
 	

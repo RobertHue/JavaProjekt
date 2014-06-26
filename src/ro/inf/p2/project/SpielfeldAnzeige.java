@@ -10,7 +10,8 @@ import java.util.ListIterator;
 
 import javax.swing.*;
 /**
-*@author Pascal
+*@author Pascal Zimmermann
+*@date 26.06.14
 */
 public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 
@@ -31,7 +32,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 		//Erzeugung des Grundsätzlichen Fensters
 		fenster = new JFrame("Dame");
 		fenster.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		fenster.setPreferredSize(new Dimension(600,600));
+		fenster.setPreferredSize(new Dimension(700,700));
 		fenster.setResizable(false);
 		fenster.setLayout(new BorderLayout());
 		
@@ -56,7 +57,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 		seitenbuttons.add(neustart, BorderLayout.SOUTH);
 		fenster.add(seitenbuttons, BorderLayout.EAST);
 		
-		//Hinzufügen des Spielfeldes
+		//Hinzuf?gen des Spielfeldes
 		SpielfeldErzeugen();
 		//Fertigmachen des Fensters
 		fenster.pack();
@@ -73,7 +74,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 		
 		//Erstes Element leer
 		JLabel erst = new JLabel("");
-		erst.setBounds(new Rectangle(50, 50));
+		erst.setBounds(new Rectangle(75, 75));
 		feld.add(erst);
 		//Erste Reihe an Buchstaben
 		char zeichen = 'A';
@@ -145,7 +146,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 					ISpielFigur temp = iter.next();
 					if ((temp.gibPosX() == (x+1))&& (temp.gibPosY() == (y+1))){
 						gefunden = true;
-						//Prüfe ob Dame
+						//Pr?fe ob Dame
 						if(temp.getClass().getName() == "DameStein" ){
 							spielfeld[x][y].setText("sp1D");
 						} else {
@@ -162,7 +163,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 						ISpielFigur temp = iter.next();
 						if ((temp.gibPosX() == (x+1))&& (temp.gibPosY() == (y+1))){
 							gefunden = true;
-							//Prüfe ob Dame
+							//Pr?fe ob Dame
 							if(temp.getClass().getName() == "DameStein" ){
 								spielfeld[x][y].setText("sp2D");
 							} else {

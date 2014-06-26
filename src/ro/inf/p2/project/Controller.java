@@ -2,22 +2,22 @@ package ro.inf.p2.project;
 import java.util.ArrayList;
 
 /**
-*@author Pascal
+*@author Pascal Zimmermann
+*@date 26.06.14
 */
 
 public class Controller implements IController {
 
 	ISpielfeldAnzeige anzeige;
-	//ISpiel spiel;
+	ISpiel spiel;
 	
 	//Konstruktor
-	public  Controller(/*ISpiel neuSpiel, */){
-		anzeige = new SpielfeldAnzeige(this);
-		//spiel = neuSpiel;
+	public  Controller(){
+		//TODO Maxi
 	}
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Controller ctrl =new Controller();
 		ctrl.test();
 	}
@@ -37,25 +37,29 @@ public class Controller implements IController {
 		String zug = "xyz-Test";
 		anzeige.neuZeichnen(l1, l2, zug, sel);
 	}
-
+	*/
 	public void neustartGedrueckt() {
-		System.out.println("Gedrueckt: Neustart");
-		/*
+		//System.out.println("Gedrueckt: Neustart");
+		
 		popUpAufrufen(3);
-		*/
+		
 	}
 
 
 
 	public void aufgebenGedrueckt() {
-		System.out.println("Gedrueckt: Aufgabe");
-		/*
+		//System.out.println("Gedrueckt: Aufgabe");
+		
 		popUpAufrufen(2);
-		*/
+		
 	}
 
 	
 	public void popUpAufrufen(int code){
+		//TODO: Maxis Reich
+	}
+	
+	public void popUpAufrufen(int code, ISpieler gewinner){
 		//TODO: Maxis Reich
 	}
 	
@@ -66,7 +70,64 @@ public class Controller implements IController {
 
 
 	public void feldKnopfGedrueckt(int posX, int posY) {
-		System.out.println("Spielfeld: " + posX+ "|" + posY);
+		//System.out.println("Spielfeld: " + posX+ "|" + posY);
+		
+		
+		//Pr?fe, ob schon eine Figur selektiert wurde
+		if(spiel.gibSelektierteFigur() == null) {
+			
+			//Wenn nein, dann soll er versuchen auf den Feldkoordinaten zu selektieren
+			int retwert = spiel.figurSelektieren(posX, posY);
+			
+			//Unterscheidung Erfolg/Fehlschlag
+			if (retwert != 0) {
+				fehlermeldungAusgeben(retwert);
+				return;
+			} else {
+				anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+									spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+				return;
+			}
+
+		}
+		
+		//Wenn schon eine Figur selektiert wurde,
+		//dann soll er zunächst versuchen auf den Koordinaten zu selektieren
+		int retwert = spiel.figurSelektieren(posX, posY);
+		
+		//Pr?fe, ob es geklappt hat
+		 if (retwert == 0) {
+		 	anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+		 						spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			return;
+		} else if (retwert == 4|| retwert == 3) {
+			fehlermeldungAusgeben(retwert);
+			return;
+		}
+		//Versusch des Bewegens
+		boolean retwertbool = spiel.bewegeNach(spiel.gibSelektierteFigur());
+		if (retwertbool == false) {
+		 	fehlermeldungAusgeben(5);
+		 	return;
+		} else 
+		//Pr?fe, ob die Figur weiterspringen kann
+		if(spiel.gibKannSpringen(ISpielFigur figur) == true) {
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			popUpAufrufen(5);
+			return;
+		}
+		//Pr?fe, ob jemand gewonnen hat
+		ISpieler gewinner = spiel.pruefeObGewonnen();
+		if(gewinner != null){
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());	
+			popUpAufrufen(4, gewinner);
+		}
+		//sonst einfach nur den Zug beenden
+		spiel.zugBeenden();
+		anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+							spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
 		
 	}
 	
@@ -76,52 +137,55 @@ public class Controller implements IController {
 	}
 	
 	public void aufgeben(boolean jaodernein){
-		/*
+		
 		if (jaodernein == true) {
 			spiel.aufgeben();
 		}
 		
-		*/
+		
 		anzeige.fokusAn();
 	}
 	
 	public void neustarten(boolean jaodernein){
-		/*
+		
 		if (jaodernein == true) {
 			spiel.neustarten();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz, spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
+								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
 		}
 		
-		*/
+		
 		anzeige.fokusAn();
 		
 	}
 	
 	public void ende(boolean jaodernein){
-		/*
+		
 		if (jaodernein == true) {
 			spiel.neustarten();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz, spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
+								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
 			anzeige.fokusAn();
 		} else {
 			System.exit(0);
 		}
 		
-		*/
+		
 		
 	}
 	
 	public void nochmalSpringen(boolean jaodernein){
 		anzeige.fokusAn();
-		/*
+		
 		if (jaodernein == true) {
 		
 		} else {
 			spiel.zugBeenden();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz, spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
+								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
 			anzeige.fokusAn();
 		}
-		*/
+		
 	}
 
 }

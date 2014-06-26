@@ -1,6 +1,7 @@
 package ro.inf.p2.project;
 /**
-*@author Pascal
+*@author Pascal Zimmermann
+*@date 26.06.14
 */
 public interface IController {
 
@@ -11,6 +12,7 @@ public interface IController {
 	public abstract void feldKnopfGedrueckt(int posX, int posY);
 	
 	public abstract void popUpAufrufen(int code);
+	public abstract void popUpAufrufen(int code, ISpieler gewinner);
 	
 	public abstract void fehlermeldungAusgeben(int code);
 	
