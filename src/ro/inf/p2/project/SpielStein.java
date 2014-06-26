@@ -10,7 +10,7 @@ public class SpielStein implements ISpielFigur{
 	protected int posY;
 	private int farbe;	// 0=schwarz, 1=weiss
 	private boolean kannSpringen;
- 
+  
 	//**********************
 	// Konstruktor
 	//**********************
