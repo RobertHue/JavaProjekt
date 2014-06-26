@@ -24,7 +24,7 @@ public class SpielStein implements ISpielFigur{
 	}
 
 	
-	public boolean gueltigeBewegungsRichtung( int posX, int posY)
+	public boolean gueltigeBewegung( int posX, int posY)
 	{
 		boolean result = true;
 		
@@ -34,13 +34,15 @@ public class SpielStein implements ISpielFigur{
 		if(this.gibFarbe()==0)
 		{
 			// für Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
-			if(  !((diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1))  )
+			if(  !((diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
+				   (diffX == -2 && diffY ==2) || (diffX == 2 && diffY == 2))  )
 				result = false;		// Bew. nicht möglich
 		}
 		else if(this.gibFarbe()==1)
 		{
 			// für Weiß  sind es die Richtungsvektoren (1,-1) und (-1,-1)
-			if(  !((diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1))  )
+			if(  !((diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ||
+				   (diffX == 2 && diffY == -2) || (diffX == -2 && diffY == -2))  )
 				result = false;		// Bew. nicht möglich			
 		}
 		

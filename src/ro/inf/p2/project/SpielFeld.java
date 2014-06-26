@@ -121,7 +121,7 @@ public class SpielFeld implements ISpielFeld {
 		}
 		
 		// 2.) Falsche Bewegungsrichtung?
-		if( !figur.gueltigeBewegungsRichtung( zielPosX, zielPosY) )	
+		if( !figur.gueltigeBewegung( zielPosX, zielPosY) )	
 		{
 			return false;
 		}	
@@ -328,22 +328,22 @@ public class SpielFeld implements ISpielFeld {
 		int merkeY = figur.gibPosY();
 		
 		// Prüfe ob Figur schon  die Umgebung jeder Figur die der Spieler besitzt
-		if(figur.gueltigeBewegungsRichtung(merkeX+2, merkeY+2) &&
+		if(figur.gueltigeBewegung(merkeX+2, merkeY+2) &&
 				!gueltigerSprung(figur, merkeX+2, merkeY+2).equals(null) )
 		{
 			return true;
 		}
-		if(figur.gueltigeBewegungsRichtung(merkeX-2, merkeY+2) &&
+		if(figur.gueltigeBewegung(merkeX-2, merkeY+2) &&
 				!gueltigerSprung(figur, merkeX-2, merkeY+2).equals(null) )
 		{
 			return true;
 		}
-		if(figur.gueltigeBewegungsRichtung(merkeX-2, merkeY-2) &&
+		if(figur.gueltigeBewegung(merkeX-2, merkeY-2) &&
 				!gueltigerSprung(figur, merkeX-2, merkeY-2).equals(null) )
 		{
 			return true;
 		}
-		if(figur.gueltigeBewegungsRichtung(merkeX+2, merkeY-2) &&
+		if(figur.gueltigeBewegung(merkeX+2, merkeY-2) &&
 				!gueltigerSprung(figur, merkeX+2, merkeY-2).equals(null) )
 		{
 			return true;
@@ -365,22 +365,22 @@ public class SpielFeld implements ISpielFeld {
 		int merkeY = figur.gibPosY();
 		
 		
-		if( figur.gueltigeBewegungsRichtung(merkeX+1, merkeY+1) &&
+		if( figur.gueltigeBewegung(merkeX+1, merkeY+1) &&
 				positionIstBesetztDurch(merkeX+1, merkeY+1).equals(null))
 		{
 			return true;
 		}
-		if( figur.gueltigeBewegungsRichtung(merkeX-1, merkeY+1) &&
+		if( figur.gueltigeBewegung(merkeX-1, merkeY+1) &&
 				positionIstBesetztDurch(merkeX-1, merkeY+1).equals(null))
 		{
 			return true;
 		}
-		if( figur.gueltigeBewegungsRichtung(merkeX-1, merkeY-1) &&
+		if( figur.gueltigeBewegung(merkeX-1, merkeY-1) &&
 				positionIstBesetztDurch(merkeX-1, merkeY-1).equals(null))
 		{	
 			return true;
 		}
-		if( figur.gueltigeBewegungsRichtung(merkeX+1, merkeY-1) &&
+		if( figur.gueltigeBewegung(merkeX+1, merkeY-1) &&
 				positionIstBesetztDurch(merkeX+1, merkeY-1).equals(null))
 		{	
 			return true;
