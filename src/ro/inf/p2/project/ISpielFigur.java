@@ -1,16 +1,16 @@
 package ro.inf.p2.project;
-
+ 
 /**
- * Interface für die abstract & öffentlichen Methoden
+ * Interface fuer die abstract & î’fentlichen Methoden
  * @author Robert
  *
  */
 public interface ISpielFigur {
 
 	/**
-	 * überprüft lediglich ob die übergebene Zielposition mit der SpielFigur
-	 * von der Richtung und der Länge her möglich ist
-	 * in anderen Worten: eine Bewegung, ohne Beachtung der Umgebung, gültig ist
+	 * ueberprueft lediglich ob die uebergebene Zielposition mit der SpielFigur
+	 * von der Richtung und der Lèˆ…ge her mî’lich ist
+	 * in anderen Worten: eine Bewegung, ohne Beachtung der Umgebung, gueltig ist
 	 * @param x
 	 * @param y
 	 * @return
@@ -19,35 +19,35 @@ public interface ISpielFigur {
 	
 	// Setter:
 	/**
-	 * ändere die Position der Spielfigur
+	 * èˆ…dere die Position der Spielfigur
 	 * @param x
 	 * @param y
 	 */
 	public void positionAendern(int x, int y);
 	/**
-	 * setzt die Sprungfähgikeit auf status
+	 * setzt die Sprungfè‡§gikeit auf status
 	 * @param status
 	 */
 	public void setzteSprungFaehigkeit(boolean status);
 	
 	// Getter:
 	/**
-	 * gibt die x position zurück
+	 * gibt die x position zurueck
 	 * @return
 	 */
 	public int gibPosX();
 	/**
-	 * gibt die y Position zurück
+	 * gibt die y Position zurï¿½ck
 	 * @return
 	 */
 	public int gibPosY();
 	/**
-	 * gibt die Farbe der Spielfigur zurück
+	 * gibt die Farbe der Spielfigur zurï¿½ck
 	 * @return
 	 */
 	public int gibFarbe();	
 	/**
-	 * gibt zurück ob die Sprungfähigkeit gesetzt ist oder nicht
+	 * gibt zurï¿½ck ob die Sprungfè‡§igkeit gesetzt ist oder nicht
 	 * @return
 	 */
 	public boolean kannIchSpringen();

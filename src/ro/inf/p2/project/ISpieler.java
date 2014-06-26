@@ -4,26 +4,21 @@ import java.util.ArrayList;
 
 public interface ISpieler {
 
-	
 	boolean entferneSpielFigur(ISpielFigur figur);
+
 	void fuegeDameZurListeHinzu(ISpielFigur figur);
-	
+
 	// Setter
 	public void setzeName(String name);
-	
+
 	// Getter
 	int gibAnzahlSteine();
-	ArrayList<ISpielFigur> gibFiguren();
-	String gibName();
-	
 
-	
-	
-	
-	// ISpielFigur gibFigur(int posX, int posY); 
+	ArrayList<ISpielFigur> gibFiguren();
+
+	String gibName();
+
+	// ISpielFigur gibFigur(int posX, int posY);
 	// -> brauchen wir wahrscheinlich eher nicht
-	
-	
-	
-	
+
 }

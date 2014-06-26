@@ -6,7 +6,7 @@ import java.util.ListIterator;
 
 /**
  * speichert alle Spielsteine indirekt dadurch dass es die Spieler speichert
- * fungiert als Hilfsklasse, um den ausgewählten Spielstein seine Umgebung(das Spielfeld) zu übergeben
+ * fungiert als Hilfsklasse, um den ausgewè‡§lten Spielstein seine Umgebung(das Spielfeld) zu ï¿½bergeben
  * @author Robert
  *
  */
@@ -15,23 +15,23 @@ public class SpielFeld implements ISpielFeld {
 	private ISpieler spielerSchwarz;
 	private ISpieler spielerWeiss;
 
-	
+	 
 	public SpielFeld() {
 		// ruft den Konstruktor von Spieler auf
 		// jetzt pushe dich halt!!!!
 		spielerSchwarz = new Spieler(0);	// Spieler mit schwarzen SpielFiguren
- 		spielerWeiss   = new Spieler(1);	// Spieler mit weißen SpielFiguren
+ 		spielerWeiss   = new Spieler(1);	// Spieler mit weiï¾Ÿen SpielFiguren
 	}
 	
 	/**
 	 * muss vom Spiel in jeder Standby-Phase aufgerufen werden um 
-	 * die Fähigkeiten der Steine des Spielers zu setzten der am Zug ist
+	 * die Fè‡§igkeiten der Steine des Spielers zu setzten der am Zug ist
 	 * (wegen Laufzeit-Performance)
 	 */
 	public void updateStatus(ISpieler spieler)
 	{
 		Iterator<ISpielFigur> it;
-		// setze Status von vorherigen Zug zurück
+		// setze Status von vorherigen Zug zurï¿½ck
 		ArrayList<ISpielFigur> alleSpielFiguren = this.gibAlleSpielFiguren();
 		it = alleSpielFiguren.iterator();
 		while(it.hasNext())
@@ -67,13 +67,13 @@ public class SpielFeld implements ISpielFeld {
 
 		ISpielFigur ausgewaehlteFigur = positionIstBesetztDurch( posX, posY );
 		
-		// falls ausgewählte Position unbesetzt ist
+		// falls ausgewè‡§lte Position unbesetzt ist
 		if( ausgewaehlteFigur.equals(null) )
 		{
 			return 1;	// Feld der Auswahl ist leer
 		}
 		
-		// falls ausgewählte Figur nicht von spieler ist
+		// falls ausgewè‡§lte Figur nicht von spieler ist
 		if( !spieler.gibFiguren().contains(ausgewaehlteFigur) )
 		{
 			return 2;	// Figur ist nicht von dir
@@ -86,7 +86,7 @@ public class SpielFeld implements ISpielFeld {
 		
 		if(!ausgewaehlteFigur.kannIchSpringen())
 		{
-			return 4;	// andere Spielfiguren haben Priorität
+			return 4;	// andere Spielfiguren haben Prioritèˆ©
 		}
 		
 		
@@ -98,19 +98,19 @@ public class SpielFeld implements ISpielFeld {
 
 	/**
 	 * Diese Methode bewegt eine Spielfigur von ihrer aktuellen Position 
-	 * zu einer neuen Position und überprüft ob Zielposition unbesetzt und 
+	 * zu einer neuen Position und ï¿½berprï¿½ft ob Zielposition unbesetzt und 
 	 * die Bewegungsrichtung der Spielfigur in Ordnung war.
 	 * 
-	 * Falls Bewegung ein Sprung war, wird dieser ebenfalls auf Gültigkeit überprüft 
-	 * und der gegnerische übersprungene Spielstein wird entfernt.
+	 * Falls Bewegung ein Sprung war, wird dieser ebenfalls auf Gï¿½ltigkeit ï¿½berprï¿½ft 
+	 * und der gegnerische ï¿½bersprungene Spielstein wird entfernt.
 	 * 
 	 * Falls Spielfigur das Ende des Spielfeldes erreicht hat, mache sie zur Dame
 	 * 
 	 * @param figur	die Figur die bewegt werden soll
 	 * @param zielPosX die neue Position X
 	 * @param zielPosY die neue Position Y
-	 * @return	gibt die Gültigkeit der Bewegung an den Aufrufer zurück
-	 * 			false = nicht gültige Bewegung; true = gültige Bewegung
+	 * @return	gibt die Gï¿½ltigkeit der Bewegung an den Aufrufer zurï¿½ck
+	 * 			false = nicht gï¿½ltige Bewegung; true = gï¿½ltige Bewegung
 	 */
 	public boolean bewegeNach( ISpielFigur figur, int zielPosX, int zielPosY)
 	{
@@ -127,7 +127,7 @@ public class SpielFeld implements ISpielFeld {
 		}	
 			
 
-		// 3.) Bewegung ein Sprung? falls Ja ist der Sprung möglich?
+		// 3.) Bewegung ein Sprung? falls Ja ist der Sprung mî’lich?
 		if(istBewegungEinSprung(figur, zielPosX, zielPosY))
 		{
 			ISpielFigur ueberSprungener = gueltigerSprung(figur, zielPosX, zielPosY);
@@ -137,7 +137,7 @@ public class SpielFeld implements ISpielFeld {
 			}
 			else
 			{
-				// Sprung war korrekt & lösche den übersprungenen SpielStein aus der FigurenListe des jeweiligen Spielers
+				// Sprung war korrekt & lî’›che den ï¿½bersprungenen SpielStein aus der FigurenListe des jeweiligen Spielers
 				if( this.gibSpielerSchwarz().gibFiguren().contains(ueberSprungener))
 				{
 					this.gibSpielerSchwarz().entferneSpielFigur(ueberSprungener);
@@ -149,17 +149,17 @@ public class SpielFeld implements ISpielFeld {
 			}		
 		}
 	
-		// Ändere die Position
+		// ï¾„ndere die Position
 		figur.positionAendern(zielPosX, zielPosY);
 		
-		// macheSpielFigurZuDame falls gegenüberliegendes Ende erreicht
+		// macheSpielFigurZuDame falls gegenï¿½berliegendes Ende erreicht
 		if( ( figur.gibFarbe()==0 && figur.gibPosY()==7 ) ||
 			( figur.gibFarbe()==1 && figur.gibPosY()==0 ))
 		{
 			macheSpielFigurZuDame(figur);
 		}
 		
-		// gib Gültigkeit der Bewegung an den Aufrufer zurück
+		// gib Gï¿½ltigkeit der Bewegung an den Aufrufer zurï¿½ck
 		return true;
 	}
 	
@@ -168,7 +168,7 @@ public class SpielFeld implements ISpielFeld {
 	
 	
 	//******************************
-	// Hilfsmethoden für SpielFeld
+	// Hilfsmethoden fï¿½r SpielFeld
 	//******************************
 	private boolean freundlicheFiguren(ISpielFigur figur1, ISpielFigur figur2)
 	{
@@ -176,7 +176,7 @@ public class SpielFeld implements ISpielFeld {
 	}
 	
 	/**
-	 * gibt zurück ob Bewegung ein Sprung ist
+	 * gibt zurï¿½ck ob Bewegung ein Sprung ist
 	 * @param figur
 	 * @param zielPosX
 	 * @param zielPosY
@@ -184,14 +184,14 @@ public class SpielFeld implements ISpielFeld {
 	 */
 	private boolean istBewegungEinSprung(ISpielFigur figur, int zielPosX, int zielPosY)
 	{
-		// möglicher Sprung ist alles was einen Richtungsvektor von (2,2) hat
+		// mî’licher Sprung ist alles was einen Richtungsvektor von (2,2) hat
 		int diffX = zielPosX-figur.gibPosX();
 		int diffY = zielPosY-figur.gibPosY();
 		return (Math.abs(diffX)==2 && Math.abs(diffY)==2);
 	}
 	/**
-	 * Überprüft ob die Bewegung ein Sprung war und ob der Sprung erlaubt ist
-	 * Falls gültiger Sprung liefere die übersprungene Spielfigur
+	 * ï¾œberprï¿½ft ob die Bewegung ein Sprung war und ob der Sprung erlaubt ist
+	 * Falls gï¿½ltiger Sprung liefere die ï¿½bersprungene Spielfigur
 	 * @param figur
 	 * @param zielPosX
 	 * @param zielPosY
@@ -202,7 +202,7 @@ public class SpielFeld implements ISpielFeld {
 		int diffX = zielPosX-figur.gibPosX();
 		int diffY = zielPosY-figur.gibPosY();
 
-		// prüfe Figur auf halber Strecke = 1/2* (A+B) = Mittelpunkt auf Vektor
+		// prï¿½fe Figur auf halber Strecke = 1/2* (A+B) = Mittelpunkt auf Vektor
 		ISpielFigur besetztDurch = positionIstBesetztDurch( zielPosX, zielPosY);
 		ISpielFigur ueberSprungener = positionIstBesetztDurch( 
 				(int)0.5*(figur.gibPosX()+diffX), (int)0.5*(figur.gibPosY()+diffY));
@@ -210,17 +210,17 @@ public class SpielFeld implements ISpielFeld {
 		
 		if( !besetztDurch.equals(null) )
 		{  
-			return null;	// Springen nur auf leere Felder möglich
+			return null;	// Springen nur auf leere Felder mî’lich
 		}
 		
 		if( ueberSprungener.equals(null) )
 		{
-			return null;	// Springen über leere Felder nicht möglich
+			return null;	// Springen ï¿½ber leere Felder nicht mî’lich
 		}
 
 		if( freundlicheFiguren(figur, besetztDurch) )
 		{
-			return null; 	// Springen über eigene (freundliche) Spielfiguren nicht möglich
+			return null; 	// Springen ï¿½ber eigene (freundliche) Spielfiguren nicht mî’lich
 		}
 		
 		return ueberSprungener;
@@ -231,8 +231,8 @@ public class SpielFeld implements ISpielFeld {
 	
 	
 	/**
-	 * Gibt zurück welche Spielfigur die übergebene Position besetzt
-	 * Falls keine diese Position besetzt gibt sie null zurück
+	 * Gibt zurï¿½ck welche Spielfigur die ï¿½bergebene Position besetzt
+	 * Falls keine diese Position besetzt gibt sie null zurï¿½ck
 	 * @param posX
 	 * @param posY
 	 * @return
@@ -275,7 +275,7 @@ public class SpielFeld implements ISpielFeld {
 		
 		ISpielFigur neueDame = new DameStein(figur);	// erzeuge neue Figur als Dame
 		
-		// Entferne die alte figur aus der Liste des jeweiligen Spielers und füge Dame in Liste
+		// Entferne die alte figur aus der Liste des jeweiligen Spielers und fï¿½ge Dame in Liste
 		if( this.gibSpielerSchwarz().gibFiguren().contains(figur))
 		{
 			this.gibSpielerSchwarz().entferneSpielFigur(figur);
@@ -289,17 +289,17 @@ public class SpielFeld implements ISpielFeld {
 	}
 	
 	//****************
-	// Hilfsfunktionen für Figur selektieren
+	// Hilfsfunktionen fï¿½r Figur selektieren
 	//****************
 	/**
-	 * Gibt alle Figuren des Spielers zurück die springen können und damit auch müssen
+	 * Gibt alle Figuren des Spielers zurï¿½ck die springen kî’–nen und damit auch mï¿½ssen
 	 * @return ArrayList<ISpielFigur>
 	 */
 	private ArrayList<ISpielFigur> figurenDieSpringenMuessen(ISpieler spieler)
 	{
 		ArrayList<ISpielFigur> figuren = spieler.gibFiguren();
 		
-		// streiche Figuren heraus die nicht springen müssen (12 Tests, dh. max.: 5*12+12=72 if's)
+		// streiche Figuren heraus die nicht springen mï¿½ssen (12 Tests, dh. max.: 5*12+12=72 if's)
 		Iterator<ISpielFigur> it = figuren.iterator();
 		while(it.hasNext())
 		{
@@ -308,7 +308,7 @@ public class SpielFeld implements ISpielFeld {
 			// falls Spielfigur nicht springen kann
 			if(!kannSpielFigurSpringen(figur))
 			{
-				figuren.remove(figur);	// lösche die Spielfigur aus der Liste
+				figuren.remove(figur);	// lî’›che die Spielfigur aus der Liste
 			}
 		}
 		
@@ -317,7 +317,7 @@ public class SpielFeld implements ISpielFeld {
 	
 	
 	/**
-	 * Prüft ob übergebene SpielFigur springen kann
+	 * Prï¿½ft ob ï¿½bergebene SpielFigur springen kann
 	 * @param figur
 	 * @return
 	 */
@@ -327,7 +327,7 @@ public class SpielFeld implements ISpielFeld {
 		int merkeX = figur.gibPosX();
 		int merkeY = figur.gibPosY();
 		
-		// Prüfe ob Figur schon  die Umgebung jeder Figur die der Spieler besitzt
+		// Prï¿½fe ob Figur schon  die Umgebung jeder Figur die der Spieler besitzt
 		if(figur.gueltigeBewegung(merkeX+2, merkeY+2) &&
 				!gueltigerSprung(figur, merkeX+2, merkeY+2).equals(null) )
 		{
@@ -355,7 +355,7 @@ public class SpielFeld implements ISpielFeld {
 	
 	
 	/**
-	 * Prüft ob übergebene SpielFigur sich um einen Schritt bewegen kann
+	 * Prï¿½ft ob ï¿½bergebene SpielFigur sich um einen Schritt bewegen kann
 	 * @param figur
 	 * @return
 	 */
@@ -395,7 +395,7 @@ public class SpielFeld implements ISpielFeld {
 	// Getter
 	//****************
 	/**
-	 * Getter für den Spieler mit den Schwarzen Spielsteinen
+	 * Getter fï¿½r den Spieler mit den Schwarzen Spielsteinen
 	 * @return	ISpieler
 	 */
 	public ISpieler gibSpielerSchwarz()
@@ -403,14 +403,14 @@ public class SpielFeld implements ISpielFeld {
 		return this.spielerSchwarz;
 	}
 	/**
-	 * Getter für den Spieler mit den Weißen Spielsteinen
+	 * Getter fï¿½r den Spieler mit den Weiï¾Ÿen Spielsteinen
 	 * @return	ISpieler
 	 */
 	public ISpieler gibSpielerWeiss() {
 		return this.spielerWeiss;
 	}
 	/**
-	 * gibt alle Spielfiguren in einer ArrayListe zurück
+	 * gibt alle Spielfiguren in einer ArrayListe zurï¿½ck
 	 * @return ArrayListe<ISpielFigur>
 	 */
 	public ArrayList<ISpielFigur> gibAlleSpielFiguren() {
