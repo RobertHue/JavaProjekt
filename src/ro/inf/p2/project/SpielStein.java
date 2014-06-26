@@ -2,6 +2,8 @@ package ro.inf.p2.project;
 
 
 
+
+
 public class SpielStein implements ISpielFigur{
 	//**********************
 	// Attribute
@@ -10,7 +12,7 @@ public class SpielStein implements ISpielFigur{
 	protected int posY;
 	private int farbe;	// 0=schwarz, 1=weiss
 	private boolean kannSpringen;
-  
+
 	//**********************
 	// Konstruktor
 	//**********************
@@ -25,30 +27,40 @@ public class SpielStein implements ISpielFigur{
 
 	
 	public boolean gueltigeBewegung( int posX, int posY)
-	{
-		boolean result = true;
-		
+	{		
 		int diffX = posX-this.posX;
 		int diffY = posY-this.posY;
+
+		// Bewegung ist l�nger als ein Sprung
+		if(diffX > 2)	return false;
+		if(diffY > 2)	return false;
 		
-		if(this.gibFarbe()==0)
+		if( this.gibFarbe()==0 && !validiereRichtungsVektorSchwarz(diffX, diffY)  )
 		{
-			// f�r Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
-			if(  !((diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
-				   (diffX == -2 && diffY ==2) || (diffX == 2 && diffY == 2))  )
-				result = false;		// Bew. nicht mlich
+			return false;		// Bew. nicht m�glich
 		}
-		else if(this.gibFarbe()==1)
+		if( this.gibFarbe()==1 && !validiereRichtungsVektorWeiss(diffX, diffY)  )
 		{
-			// f�r Weiﾟ  sind es die Richtungsvektoren (1,-1) und (-1,-1)
-			if(  !((diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ||
-				   (diffX == 2 && diffY == -2) || (diffX == -2 && diffY == -2))  )
-				result = false;		// Bew. nicht mlich			
+			return false;		// Bew. nicht m�glich			
 		}
-		
-		return result;
+
+		return true;
 	}
-	
+
+
+	//*************************
+	// Hilfsmethoden
+	//*************************
+	protected boolean validiereRichtungsVektorSchwarz(int diffX, int diffY) {
+		// f�r Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
+		return (diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
+			   (diffX == -2 && diffY ==2) || (diffX == 2 && diffY == 2);
+	}
+	protected boolean validiereRichtungsVektorWeiss(int diffX, int diffY) {
+		// f�r Wei�  sind es die Richtungsvektoren (1,-1) und (-1,-1)
+		return (diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ||
+			   (diffX == 2 && diffY == -2) || (diffX == -2 && diffY == -2);
+	}
 
 
 	//*************************

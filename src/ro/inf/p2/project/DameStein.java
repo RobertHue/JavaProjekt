@@ -1,13 +1,14 @@
 package ro.inf.p2.project;
 
+
+
 public class DameStein extends SpielStein{
 
-	/**
-	 * Dieser Konstruktor erzeugt einen DameStein der an der Position des übergebenen SpielSteins sich befindet
-	 * -> wird benötigt, um einen SpielStein in einen DameStein umzuwandeln
-	 * @param posX
-	 * @param posY
-	 */
+
+	public DameStein(int posX, int posY, int farbe)
+	{
+		super(posX, posY, farbe);
+	}
 	public DameStein(ISpielFigur figur) {
 		super(figur.gibPosX(), figur.gibPosX(), figur.gibFarbe() );
 	}
@@ -17,7 +18,6 @@ public class DameStein extends SpielStein{
 	
 	public boolean gueltigeBewegung( int posX, int posY)
 	{
-		boolean result = true;
 		int diffX = Math.abs(posX-this.gibPosX());
 		int diffY = Math.abs(posY-this.gibPosY());
 
@@ -26,13 +26,14 @@ public class DameStein extends SpielStein{
 		if(diffY > 2)	return false;
 		
 		// Dame erhält zusätzliche Bewegungsrichtungen
-		// -> unabhängig von der Farbe werden die Richtungsvektoren (1,1)(1,-1)(-1,1)(-1,-1) überprüft
-		if( !((diffX == 1 && diffY ==1) || (diffX == 2 && diffY == 2)) )
+		// -> unabhängig von der Farbe
+		if( !super.validiereRichtungsVektorSchwarz(diffX, diffY) ||
+			!super.validiereRichtungsVektorWeiss(diffX, diffY))
 		{
-				result = false;		// Bew. nicht möglich
+				return false;		// Bew. nicht möglich
 		}
 		
-		return result;
+		return true;
 	}
 	
 	
