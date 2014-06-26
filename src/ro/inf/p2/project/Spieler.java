@@ -11,6 +11,10 @@ public class Spieler implements ISpieler  {
 	
 	
 	
+	public Spieler(int i) {
+		// TODO Auto-generated constructor stub
+	}
+
 	/**
 	 * Check ob figur existiert, 
 	 * wenn true dann loeschen und return true,
