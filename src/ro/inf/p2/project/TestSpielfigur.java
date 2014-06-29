@@ -6,14 +6,20 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class TestSpielfigur  extends TestCase {
+public class TestSpielfigur    extends TestCase implements ISpielFigur {
 	
+	
+	
+	private static final int posX = 0;
+	private static final int posY = 0;
 	
 	
 	private static Logger logger = Logger.getLogger(SpielStein.class.getName());
 	
 	
 	
+
+
 
 	@Test
 	public void testGueltigeBewegungs() {
