@@ -24,13 +24,12 @@ public class Spieler implements ISpieler {
 
 	ArrayList<ISpielFigur> Positions = new ArrayList<ISpielFigur>();
 
-	
-	
 	/**
 	 * Macht Array mit 12 Spielsteinen für X = 0 die Schwartzen X = 1 die Weißen
+	 * 
 	 * @param x
 	 */
-	
+
 	public Spieler(int x) {
 		// TODO Auto-generated constructor stub
 		// x = Anzahl der steine
@@ -52,7 +51,6 @@ public class Spieler implements ISpieler {
 			SpielerWeiss.add(new SpielStein(6, 0, 1)); // G1
 			SpielerWeiss.add(new SpielStein(7, 2, 1)); // H2
 			SpielerWeiss.add(new SpielStein(6, 2, 1)); // G3
-			
 
 		} else if (x == 1) {
 			List<SpielStein> SpielerSchwartz = new ArrayList<SpielStein>();

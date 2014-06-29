@@ -2,11 +2,12 @@ package ro.inf.p2.project;
 
 import java.util.logging.Logger;
 
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class TestSpielfigur    extends TestCase implements ISpielFigur {
+public abstract class TestSpielfigur    extends TestCase implements ISpielFigur {
 	
 	
 	
@@ -17,15 +18,47 @@ public class TestSpielfigur    extends TestCase implements ISpielFigur {
 	private static Logger logger = Logger.getLogger(SpielStein.class.getName());
 	
 	
-	
-
+	int farbe;
+	int fweiss =1;
+	int fschwartz= 0; 
 
 
 	@Test
-	public void testGueltigeBewegungs() {
+	public void testGueltigeBewegungs() {				// farblich ...
+		
+		
+		
+		
+		SpielStein weiss = new SpielStein(posX, posY, fweiss);
+		SpielStein schwartz = new SpielStein(posX, posY, fschwartz);
 		
 		try {
-			gueltigeBewegung();
+			
+			
+			
+			assertTrue(weiss.gueltigeBewegung(0 , 0) == true );
+			assertTrue(weiss.gueltigeBewegung(1 , 1) == true );
+			assertTrue(weiss.gueltigeBewegung(-1, 1) == true );
+			
+			assertTrue(weiss.gueltigeBewegung(2, 1) == false );
+			assertTrue(weiss.gueltigeBewegung(2, 2) == false );
+			assertTrue(weiss.gueltigeBewegung(1, 2) == false );
+			
+			
+			assertTrue(schwartz.gueltigeBewegung( 0, 0) == true );
+			assertTrue(schwartz.gueltigeBewegung(-1,-1) == true );
+			assertTrue(schwartz.gueltigeBewegung( 1,-1) == true );
+			
+			assertTrue(schwartz.gueltigeBewegung(-2, 1) == false );
+			assertTrue(schwartz.gueltigeBewegung(0, 0) == false );
+			assertTrue(schwartz.gueltigeBewegung(0, 0) == false );
+		
+		
+		}
+		
+		catch (Exception e) {
+			
+			
 			
 		}
 		
