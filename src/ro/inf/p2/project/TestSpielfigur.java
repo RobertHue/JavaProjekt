@@ -1,14 +1,33 @@
 package ro.inf.p2.project;
 
-import static org.junit.Assert.*;
+import java.util.logging.Logger;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public class TestSpielfigur {
+public class TestSpielfigur  extends TestCase {
+	
+	
+	
+	private static Logger logger = Logger.getLogger(SpielStein.class.getName());
+	
+	
+	
 
 	@Test
-	public void testGueltigeBewegungsRichtung() {
+	public void testGueltigeBewegungs() {
+		
+		try {
+			gueltigeBewegung();
+			
+		}
+		
+		
+		
+		
+		
+		
 		fail("Not yet implemented");
 	}
 
