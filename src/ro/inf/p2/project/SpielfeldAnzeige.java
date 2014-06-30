@@ -12,7 +12,7 @@ import java.util.ListIterator;
 import javax.swing.*;
 /**
 *@author Pascal Zimmermann
-*@date 29.06.14
+*@date 30.06.14
 */
 public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 
@@ -29,6 +29,10 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 		fensterErzeugen();
 		}
 	
+	
+	/**
+	 * Erzeugt das Spielfeld-Fenster mit den Knoepfen am Rand
+	 */
 	public void fensterErzeugen() {
 		//Erzeugung des Grundsätzlichen Fensters
 		fenster = new JFrame("Dame");
@@ -66,6 +70,9 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 		
 	}
 	
+	/**
+	 * Erzeugt das leere Spielfeld
+	 */
 	public void SpielfeldErzeugen(){
 		feld =new JPanel();
 		
@@ -111,7 +118,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 				} else {
 					spielfeld[x][y].setIcon(iconb);
 				}
-				spielfeld[x][y].setActionCommand(new String(""+(x+1) +(y+1)));
+				spielfeld[x][y].setActionCommand(new String(""+(x) +(y)));
 				spielfeld[x][y].addActionListener(this);
 				spielfeld[x][y].setPreferredSize(new Dimension(60,60));
 				feld.add(spielfeld[x][y], c);
@@ -123,6 +130,9 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		String ausgabe = arg0.getActionCommand();
 		if(ausgabe == "neustart"){
@@ -258,6 +268,12 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 	
 	}
 	
+	/**
+	 * Prueft, ob eine Spielfigur selektiert ist
+	 * @param figur : Die zu pruefende Figur
+	 * @param selektiert : Die Selektierte Figur
+	 * @return Gibt true zurueck, falls figur selektiert ist, sonst false
+	 */
 	private boolean pruefeObSelektiert(ISpielFigur figur, ISpielFigur selektiert){
 		if (selektiert == null){
 			return false;

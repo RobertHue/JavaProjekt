@@ -1,6 +1,9 @@
 package ro.inf.p2.project;
 
 import java.util.ArrayList;
+import java.util.Set;
+
+import sun.security.action.GetBooleanAction;
 
 public class Spiel implements ISpiel {
 
@@ -10,12 +13,15 @@ public class Spiel implements ISpiel {
 	}
 
 	public boolean hatGewonnen() {
-		// TODO Auto-generated method stub
-		return false;
+
+		//if (pruefeObGewonnen(Spieler) != null)
+
+			// TODO Auto-generated method stub
+			return false;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwartz() {
-		return spielerSchwarz  ;
+		return spielerSchwarz;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenWeiss() {
@@ -25,7 +31,17 @@ public class Spiel implements ISpiel {
 	public ISpieler pruefeObGewonnen() { // Winning logic
 		// TODO Auto-generated method stub
 
-		return null;
+		if (this.spielerSchwarz.isEmpty() == true) {
+
+			return (ISpieler) this.spielerSchwarz;
+
+		} else if (this.spielerWeiss.isEmpty() == true) {
+			return (ISpieler) this.spielerWeiss;
+		}
+
+		else if ( SpielStein.kannIchSpringen( ISpielFigur figur) == true)
+
+			return null;
 	}
 
 	public ISpieler gibIstAmZug() {
