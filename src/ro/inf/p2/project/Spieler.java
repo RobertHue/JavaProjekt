@@ -31,43 +31,42 @@ public class Spieler implements ISpieler {
 	 */
 
 	public Spieler(int x) {
-		// TODO Auto-generated constructor stub
-		// x = Anzahl der steine
+		
 
 		if (x == 0) {
 
 			List<SpielStein> SpielerWeiss = new ArrayList<SpielStein>();
 
 			// PosX,PosY,Farbe
-			SpielerWeiss.add(new SpielStein(0, 0, 1)); // A1
-			SpielerWeiss.add(new SpielStein(1, 1, 1)); // B2
-			SpielerWeiss.add(new SpielStein(0, 2, 1)); // A3
-			SpielerWeiss.add(new SpielStein(2, 0, 1)); // C1
-			SpielerWeiss.add(new SpielStein(3, 1, 1)); // D2
-			SpielerWeiss.add(new SpielStein(2, 2, 1)); // C3
-			SpielerWeiss.add(new SpielStein(4, 0, 1)); // E1
-			SpielerWeiss.add(new SpielStein(5, 1, 1)); // F2
-			SpielerWeiss.add(new SpielStein(4, 2, 1)); // E3
-			SpielerWeiss.add(new SpielStein(6, 0, 1)); // G1
-			SpielerWeiss.add(new SpielStein(7, 2, 1)); // H2
-			SpielerWeiss.add(new SpielStein(6, 2, 1)); // G3
+			SpielerWeiss.add(new SpielStein(0, 5, 1)); // A6
+			SpielerWeiss.add(new SpielStein(0, 7, 1)); // A8
+			SpielerWeiss.add(new SpielStein(1, 6, 1)); // B7
+			SpielerWeiss.add(new SpielStein(2, 5, 1)); // C6
+			SpielerWeiss.add(new SpielStein(2, 7, 1)); // C8
+			SpielerWeiss.add(new SpielStein(3, 6, 1)); // D7
+			SpielerWeiss.add(new SpielStein(4, 5, 1)); // E6
+			SpielerWeiss.add(new SpielStein(4, 7, 1)); // E8
+			SpielerWeiss.add(new SpielStein(5, 6, 1)); // F7
+			SpielerWeiss.add(new SpielStein(6, 5, 1)); // G6
+			SpielerWeiss.add(new SpielStein(6, 7, 1)); // G8
+			SpielerWeiss.add(new SpielStein(7, 6, 1)); // H7
 
 		} else if (x == 1) {
 			List<SpielStein> SpielerSchwartz = new ArrayList<SpielStein>();
 
 			// PosX,PosY,Farbe
-			SpielerSchwartz.add(new SpielStein(0, 7, 0)); // A7
-			SpielerSchwartz.add(new SpielStein(1, 6, 0)); // B6
-			SpielerSchwartz.add(new SpielStein(1, 8, 0)); // B8
-			SpielerSchwartz.add(new SpielStein(2, 7, 0)); // C7
-			SpielerSchwartz.add(new SpielStein(3, 6, 0)); // D6
-			SpielerSchwartz.add(new SpielStein(3, 8, 0)); // D8
-			SpielerSchwartz.add(new SpielStein(4, 7, 0)); // E7
-			SpielerSchwartz.add(new SpielStein(5, 6, 0)); // F6
-			SpielerSchwartz.add(new SpielStein(5, 8, 0)); // F8
-			SpielerSchwartz.add(new SpielStein(6, 7, 0)); // G7
-			SpielerSchwartz.add(new SpielStein(7, 6, 0)); // H6
-			SpielerSchwartz.add(new SpielStein(7, 8, 0)); // H8
+			SpielerSchwartz.add(new SpielStein(0, 1, 0)); // A2
+			SpielerSchwartz.add(new SpielStein(1, 0, 0)); // B1
+			SpielerSchwartz.add(new SpielStein(1, 2, 0)); // B3
+			SpielerSchwartz.add(new SpielStein(2, 1, 0)); // C2
+			SpielerSchwartz.add(new SpielStein(3, 0, 0)); // D1
+			SpielerSchwartz.add(new SpielStein(3, 2, 0)); // D3
+			SpielerSchwartz.add(new SpielStein(4, 1, 0)); // E2
+			SpielerSchwartz.add(new SpielStein(5, 0, 0)); // F1
+			SpielerSchwartz.add(new SpielStein(5, 2, 0)); // F3
+			SpielerSchwartz.add(new SpielStein(6, 1, 0)); // G2
+			SpielerSchwartz.add(new SpielStein(7, 0, 0)); // H1
+			SpielerSchwartz.add(new SpielStein(7, 2, 0)); // H3
 
 			// Map<Integer,Integer> PosX = new HashMap<Integer,Integer>();
 			// PosX.put(1,1);
