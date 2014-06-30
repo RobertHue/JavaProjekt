@@ -26,9 +26,10 @@ public class Spiel implements ISpiel {
 
 	public boolean hatGewonnen() {
 
-		// if (pruefeObGewonnen(Spieler) != null)
-
-		// TODO Auto-generated method stub
+		 if (pruefeObGewonnen() != null) {
+			 return  true;
+		 }
+		 else
 		return false;
 	}
 
