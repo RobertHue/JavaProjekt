@@ -7,17 +7,29 @@ import sun.security.action.GetBooleanAction;
 
 public class Spiel implements ISpiel {
 
+	ISpielFigur SpielStein;
+	ISpieler Spieler;
+	ISpielFeld spielFeld;
+
 	public boolean istAmZug() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+	public ISpieler gibIstAmZug() { // Was was noch kommt...
+		// TODO Auto-generated method stub
+
+		this.istAmZug();
+
+		return Spieler;
+	}
+
 	public boolean hatGewonnen() {
 
-		//if (pruefeObGewonnen(Spieler) != null)
+		// if (pruefeObGewonnen(Spieler) != null)
 
-			// TODO Auto-generated method stub
-			return false;
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwartz() {
@@ -29,29 +41,35 @@ public class Spiel implements ISpiel {
 	}
 
 	public ISpieler pruefeObGewonnen() { // Winning logic
-		// TODO Auto-generated method stub
 
 		if (this.spielerSchwarz.isEmpty() == true) {
 
-			return (ISpieler) this.spielerSchwarz;
+			return Spieler;
 
 		} else if (this.spielerWeiss.isEmpty() == true) {
-			return (ISpieler) this.spielerWeiss;
+			return Spieler;
 		}
 
-		else if ( SpielStein.kannIchSpringen( ISpielFigur figur) == true)
+		else if (SpielStein.kannIchSpringen() == false) { // Warscheinlich
+															// Falsch... Brauch
+															// die methode die
+															// die
+															// BewegungsFähigket
+															// prüft
+			return Spieler;
+			//
+		}
 
-			return null;
-	}
-
-	public ISpieler gibIstAmZug() {
-		// TODO Auto-generated method stub
 		return null;
+
 	}
 
 	public ISpielFigur gibSelektierteFigur() {
-		// TODO Auto-generated method stub
-		return null;
+
+		this.spielFeld.figurSelektieren(Spieler, this.SpielStein.gibPosX(),
+				SpielStein.gibPosY());
+
+		return SpielStein;
 	}
 
 }
