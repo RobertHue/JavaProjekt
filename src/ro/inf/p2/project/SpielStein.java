@@ -1,9 +1,9 @@
 package ro.inf.p2.project;
 
-
-
-
-
+/**
+ * Klasse: SpielStein
+ * @author Robert
+ */
 public class SpielStein implements ISpielFigur{
 	//**********************
 	// Attribute
@@ -28,20 +28,23 @@ public class SpielStein implements ISpielFigur{
 	
 	public boolean gueltigeBewegung( int posX, int posY)
 	{		
+		// falls Zielposition außerhalb des Spielfeldes ist
+		if( !validiereZielImSpielFeld(posX, posY) )	return false;
+		
 		int diffX = posX-this.posX;
 		int diffY = posY-this.posY;
 
-		// Bewegung ist l�nger als ein Sprung
+		// Bewegung ist laenger als ein Sprung
 		if(diffX > 2)	return false;
 		if(diffY > 2)	return false;
 		
 		if( this.gibFarbe()==0 && !validiereRichtungsVektorSchwarz(diffX, diffY)  )
 		{
-			return false;		// Bew. nicht m�glich
+			return false;		// Bew. nicht moeglich
 		}
 		if( this.gibFarbe()==1 && !validiereRichtungsVektorWeiss(diffX, diffY)  )
 		{
-			return false;		// Bew. nicht m�glich			
+			return false;		// Bew. nicht moeglich			
 		}
 
 		return true;
@@ -51,13 +54,16 @@ public class SpielStein implements ISpielFigur{
 	//*************************
 	// Hilfsmethoden
 	//*************************
+	protected boolean validiereZielImSpielFeld(int posX, int posY) {
+		return posX >= 0 || posY < ISpielFeld.MAX_X || posY >= 0 || posY < ISpielFeld.MAX_Y;		
+	}
 	protected boolean validiereRichtungsVektorSchwarz(int diffX, int diffY) {
-		// f�r Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
+		// fuer Schwarz sind es die Richtungsvektoren (-1,1) und (1,1)
 		return (diffX == -1 && diffY ==1) || (diffX == 1 && diffY == 1) ||
 			   (diffX == -2 && diffY ==2) || (diffX == 2 && diffY == 2);
 	}
 	protected boolean validiereRichtungsVektorWeiss(int diffX, int diffY) {
-		// f�r Wei�  sind es die Richtungsvektoren (1,-1) und (-1,-1)
+		// fuer Weiss sind es die Richtungsvektoren (1,-1) und (-1,-1)
 		return (diffX == 1 && diffY == -1) || (diffX == -1 && diffY == -1) ||
 			   (diffX == 2 && diffY == -2) || (diffX == -2 && diffY == -2);
 	}

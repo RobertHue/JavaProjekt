@@ -1,7 +1,10 @@
 package ro.inf.p2.project;
 
 
-
+/**
+ * Klasse: DameStein
+ * @author Robert
+ */
 public class DameStein extends SpielStein{
 
 
@@ -9,7 +12,8 @@ public class DameStein extends SpielStein{
 	{
 		super(posX, posY, farbe);
 	}
-	public DameStein(ISpielFigur figur) {
+	public DameStein(ISpielFigur figur) 
+	{
 		super(figur.gibPosX(), figur.gibPosX(), figur.gibFarbe() );
 	}
 
@@ -18,6 +22,9 @@ public class DameStein extends SpielStein{
 	
 	public boolean gueltigeBewegung( int posX, int posY)
 	{
+		// falls Zielposition außerhalb des Spielfeldes ist
+		if( !validiereZielImSpielFeld(posX, posY) )	return false;
+		
 		int diffX = Math.abs(posX-this.gibPosX());
 		int diffY = Math.abs(posY-this.gibPosY());
 
@@ -27,8 +34,8 @@ public class DameStein extends SpielStein{
 		
 		// Dame erhält zusätzliche Bewegungsrichtungen
 		// -> unabhängig von der Farbe
-		if( !super.validiereRichtungsVektorSchwarz(diffX, diffY) ||
-			!super.validiereRichtungsVektorWeiss(diffX, diffY))
+		if( !validiereRichtungsVektorSchwarz(diffX, diffY) ||
+			!validiereRichtungsVektorWeiss(diffX, diffY))
 		{
 				return false;		// Bew. nicht möglich
 		}
