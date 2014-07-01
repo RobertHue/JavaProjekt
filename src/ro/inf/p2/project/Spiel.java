@@ -11,6 +11,12 @@ public class Spiel implements ISpiel {
 	ISpieler gegnerSpieler;
 	IController controller;
 
+	
+	static final ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
+	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+	
+	
+	
 	// gibKannSpringen () wieder soon schubser nach SpielFeld
 
 	/**
@@ -107,9 +113,15 @@ public class Spiel implements ISpiel {
 	 */
 	public ISpielFigur gibSelektierteFigur() {
 
-		this.spielFeld.figurSelektieren(aktiverSpieler,
+		  spielFeld.figurSelektieren(aktiverSpieler,
 				this.selectierterSpielStein.gibPosX(),
 				selectierterSpielStein.gibPosY());
+		
+		
+//		
+//		this.spielFeld.figurSelektieren(aktiverSpieler,
+//				this.selectierterSpielStein.gibPosX(),
+//				selectierterSpielStein.gibPosY());
 
 		return selectierterSpielStein;
 	}
@@ -152,11 +164,18 @@ public class Spiel implements ISpiel {
 	 */
 	public void zugBeenden() {
 
-		ISpieler substitute = aktiverSpieler;
+		ISpieler tmp = null;
+		aktiverSpieler = tmp  ;
 
-		gegnerSpieler = aktiverSpieler;
-		aktiverSpieler = substitute;
+		aktiverSpieler = gegnerSpieler  ;
+		gegnerSpieler = tmp;
 
+		
+		selectierterSpielStein = null;
+		
+		
+		
+		
 		spielFeld.updateSprungFaehigkeiten(aktiverSpieler);
 
 		this.spielFeld.bewegeNach(selectierterSpielStein,
@@ -169,7 +188,7 @@ public class Spiel implements ISpiel {
  */
 	public void neustarten() {
 
-		this.controller.neustarten(true);
+		this.controller.neuesSpielStarten(this.aktiverSpieler.gibName(), this.gegnerSpieler.gibName()); ;
 
 	}
 /**
@@ -177,7 +196,7 @@ public class Spiel implements ISpiel {
  */
 	public void aufgeben() {
 
-		this.controller.aufgeben(true);
+		this.controller.ende(true);
 
 	}
 

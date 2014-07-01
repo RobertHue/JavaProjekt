@@ -6,8 +6,8 @@ public interface ISpiel {
 
 	boolean hatGewonnen();
 
-	static final ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
-	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+//	static final ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
+//	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
 
 	public  ArrayList<ISpielFigur> gibSpielFigurenSchwarz();
 
