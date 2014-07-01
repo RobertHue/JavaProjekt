@@ -19,6 +19,7 @@ public interface ISpielFeld {
 	public ISpieler gibSpielerSchwarz();
 	public ISpieler gibSpielerWeiss();
 	public ArrayList<ISpielFigur> gibAlleSpielFiguren();
+	public boolean kannSpielFigurSpringen(ISpielFigur figur);
 	public ArrayList<ISpielFigur> figurenDieSpringenKoennen(ISpieler spieler);
 	public ArrayList<ISpielFigur> figurenDieSichBewegenKoennen(ISpieler spieler);
 	

@@ -289,7 +289,7 @@ public class SpielFeld implements ISpielFeld {
 	 * @param figur
 	 * @return
 	 */
-	private boolean kannSpielFigurSpringen(ISpielFigur figur) 
+	public boolean kannSpielFigurSpringen(ISpielFigur figur) 
 	{
 
 		int merkeX = figur.gibPosX();
