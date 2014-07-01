@@ -285,6 +285,41 @@ public class SpielFeld implements ISpielFeld {
 	// Hilfsfunktionen fuer Figur selektieren
 	//*******************************************
 	/**
+	 * Prueft ob uebergebene SpielFigur sich um einen Schritt bewegen kann
+	 * @param figur
+	 * @return
+	 */
+	private boolean istSpielFigurBewegbar(ISpielFigur figur) 
+	{
+		int merkeX = figur.gibPosX();
+		int merkeY = figur.gibPosY();
+		
+		
+		if( figur.gueltigeBewegung(merkeX+1, merkeY+1) &&
+				positionIstBesetztDurch(merkeX+1, merkeY+1).equals(null))
+		{
+			return true;
+		}
+		if( figur.gueltigeBewegung(merkeX-1, merkeY+1) &&
+				positionIstBesetztDurch(merkeX-1, merkeY+1).equals(null))
+		{
+			return true;
+		}
+		if( figur.gueltigeBewegung(merkeX-1, merkeY-1) &&
+				positionIstBesetztDurch(merkeX-1, merkeY-1).equals(null))
+		{	
+			return true;
+		}
+		if( figur.gueltigeBewegung(merkeX+1, merkeY-1) &&
+				positionIstBesetztDurch(merkeX+1, merkeY-1).equals(null))
+		{	
+			return true;
+		}
+		
+		return false;
+	}
+	
+	/**
 	 * Prueft ob uebergebene SpielFigur springen kann
 	 * @param figur
 	 * @return
@@ -314,43 +349,6 @@ public class SpielFeld implements ISpielFeld {
 		if(figur.gueltigeBewegung(merkeX+2, merkeY-2) &&
 				!gueltigerSprung(figur, merkeX+2, merkeY-2).equals(null) )
 		{
-			return true;
-		}
-		
-		return false;
-	}
-
-	
-	
-	/**
-	 * Prueft ob uebergebene SpielFigur sich um einen Schritt bewegen kann
-	 * @param figur
-	 * @return
-	 */
-	private boolean istSpielFigurBewegbar(ISpielFigur figur) 
-	{
-		int merkeX = figur.gibPosX();
-		int merkeY = figur.gibPosY();
-		
-		
-		if( figur.gueltigeBewegung(merkeX+1, merkeY+1) &&
-				positionIstBesetztDurch(merkeX+1, merkeY+1).equals(null))
-		{
-			return true;
-		}
-		if( figur.gueltigeBewegung(merkeX-1, merkeY+1) &&
-				positionIstBesetztDurch(merkeX-1, merkeY+1).equals(null))
-		{
-			return true;
-		}
-		if( figur.gueltigeBewegung(merkeX-1, merkeY-1) &&
-				positionIstBesetztDurch(merkeX-1, merkeY-1).equals(null))
-		{	
-			return true;
-		}
-		if( figur.gueltigeBewegung(merkeX+1, merkeY-1) &&
-				positionIstBesetztDurch(merkeX+1, merkeY-1).equals(null))
-		{	
 			return true;
 		}
 		
@@ -439,5 +437,30 @@ public class SpielFeld implements ISpielFeld {
 		}
 		
 		return figuren;
+	}
+	
+	/**
+	 * gibt die Spielfigur zurück, welche sich auf den Koordinaten
+	 * des Spielfelds befindet, wenn dort keine ist, dann Rückgabewert null
+	 */
+	public ISpielFigur gibFigurAuf(int posX, int posY)
+	{
+		// falls die doch noch jemand braucht stand ja eigentlich bei mir im Spezi. tut mir leid
+		ArrayList<ISpielFigur> figurenAufSpielFeld = gibAlleSpielFiguren();
+		Iterator<ISpielFigur> it = figurenAufSpielFeld.iterator();
+		
+		while(it.hasNext())
+		{
+			ISpielFigur figur = it.next();
+			
+			// falls Figur mit diesen Positionen gefunden wurde
+			if(figur.gibPosX()==posX && figur.gibPosY()==posY)
+			{
+				return figur;
+			}
+		}
+		
+		// falls keine Figur auf dieser Position gefunden wurde
+		return null;
 	}
 }

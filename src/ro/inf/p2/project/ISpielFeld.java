@@ -16,6 +16,7 @@ public interface ISpielFeld {
 	public void updateSprungFaehigkeiten(ISpieler spieler);
 	
 	// Getter
+	public ISpielFigur gibFigurAuf(int posX, int posY);
 	public ISpieler gibSpielerSchwarz();
 	public ISpieler gibSpielerWeiss();
 	public ArrayList<ISpielFigur> gibAlleSpielFiguren();
