@@ -7,7 +7,8 @@ import java.util.ArrayList;
 */
 
 public class Controller implements IController {
-
+	
+	IPopUp popup;
 	ISpielfeldAnzeige anzeige;
 	ISpiel spiel;
 	
@@ -40,8 +41,7 @@ public class Controller implements IController {
 	*/
 	public void neustartGedrueckt() {
 		//System.out.println("Gedrueckt: Neustart");
-		
-		popUpAufrufen(3);
+		popUpAufrufen(3,null,null);
 		
 	}
 
@@ -50,22 +50,31 @@ public class Controller implements IController {
 	public void aufgebenGedrueckt() {
 		//System.out.println("Gedrueckt: Aufgabe");
 		
-		popUpAufrufen(2);
+		popUpAufrufen(2,null,null);
+		
 		
 	}
 
 	
-	public void popUpAufrufen(int code){
+	public void popUpAufrufen(int code, ISpieler spieler1, ISpieler spieler2){
 		//TODO: Maxis Reich
+		popup.popUpAufrufen(code, spieler1, spieler2);
+
+		
 	}
 	
+	//Unnötig, wurde aus IController entfernt
+	/*
 	public void popUpAufrufen(int code, ISpieler gewinner){
 		//TODO: Maxis Reich
 	}
-	
+	*/
 	public void fehlermeldungAusgeben (int code) {
 		
 		//TODO: Maxis Reich
+		anzeige.fokusAus();
+		popup.fehlermeldungAusgeben(code);
+		anzeige.fokusAn();
 	}
 
 
@@ -95,7 +104,7 @@ public class Controller implements IController {
 		//dann soll er zunächst versuchen auf den Koordinaten zu selektieren
 		int retwert = spiel.figurSelektieren(posX, posY);
 		
-		//Pr?fe, ob es geklappt hat
+		//Pruefe, ob es geklappt hat
 		 if (retwert == 0) {
 		 	anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
 		 						spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
@@ -104,25 +113,25 @@ public class Controller implements IController {
 			fehlermeldungAusgeben(retwert);
 			return;
 		}
-		//Versusch des Bewegens
+		//Versuch des Bewegens
 		boolean retwertbool = spiel.bewegeNach(spiel.gibSelektierteFigur());
 		if (retwertbool == false) {
 		 	fehlermeldungAusgeben(5);
 		 	return;
 		} else 
-		//Pr?fe, ob die Figur weiterspringen kann
+		//Pruefe, ob die Figur weiterspringen kann
 		if(spiel.gibKannSpringen(ISpielFigur figur) == true) {
 			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
 								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
 			popUpAufrufen(5);
 			return;
 		}
-		//Pr?fe, ob jemand gewonnen hat
+		//Pruefe, ob jemand gewonnen hat
 		ISpieler gewinner = spiel.pruefeObGewonnen();
 		if(gewinner != null){
 			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
 								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());	
-			popUpAufrufen(4, gewinner);
+			popUpAufrufen(4, gewinner, null);
 		}
 		//sonst einfach nur den Zug beenden
 		spiel.zugBeenden();
