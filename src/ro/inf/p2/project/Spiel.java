@@ -11,6 +11,21 @@ public class Spiel implements ISpiel {
 	ISpieler gegnerSpieler;
 	IController controller;
 
+	
+	// gibKannSpringen () wieder soon schubser nach SpielFeld 
+	
+	
+	
+	public boolean gibKannSpringen(ISpielFigur gibSelektierteFigur) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		
+		return  this.gibKannSpringen(selectierterSpielStein) ;
+	}
+
+	
 	/**
 	 * Schiebt die bewegeNach() Methode weiter nach SpielFeld
 	 * 
@@ -146,6 +161,7 @@ public class Spiel implements ISpiel {
 
 	}
 
+	
 	// setzName
 
 	// public String setzeName() {

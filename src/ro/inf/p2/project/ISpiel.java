@@ -30,4 +30,9 @@ public interface ISpiel {
 
 	public void aufgeben();
 
+	public boolean bewegeNach(ISpielFigur figur, int zielPosX,int ZielPosY);
+
+	boolean gibKannSpringen(ISpielFigur gibSelektierteFigur);
+	
+	
 }

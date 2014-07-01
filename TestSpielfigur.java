@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
 public abstract class TestSpielfigur extends TestCase implements ISpielFigur {
 
-	private static final int posX = 0;
-	private static final int posY = 0;
 
 	private static Logger logger = Logger.getLogger(SpielStein.class.getName());
 
@@ -23,8 +20,7 @@ public abstract class TestSpielfigur extends TestCase implements ISpielFigur {
 	int fschwarz = 0;
 
 	@Test
-	public void testGueltigeBewegungs() { // farblich ... // Muss nachsehen ob
-											// die trues stimmen...
+	public void testGueltigeBewegungs() {
 
 		List<SpielStein> SpielerWeiss = new ArrayList<SpielStein>();
 

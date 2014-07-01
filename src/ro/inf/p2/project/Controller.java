@@ -117,7 +117,7 @@ public class Controller implements IController {
 			return;
 		}
 		//Versuch des Bewegens
-		boolean retwertbool = spiel.bewegeNach(spiel.gibSelektierteFigur());
+		boolean retwertbool = spiel.bewegeNach(spiel.gibSelektierteFigur(), posX, posY);
 		if (retwertbool == false) {
 		 	fehlermeldungAusgeben(5);
 		 	return;
