@@ -11,23 +11,18 @@ public class Spiel implements ISpiel {
 	ISpieler gegnerSpieler;
 	IController controller;
 
-	
-	// gibKannSpringen () wieder soon schubser nach SpielFeld 
-	
-	
-	
+	// gibKannSpringen () wieder soon schubser nach SpielFeld
+
+	/**
+	 * Mittelsstelle für die gibKannSpringen Methode Controller -> SpielFeld
+	 */
 	public boolean gibKannSpringen(ISpielFigur gibSelektierteFigur) {
-		// TODO Auto-generated method stub
-		
-		
-		
-		
-		return  this.gibKannSpringen(selectierterSpielStein) ;
+
+		return this.gibKannSpringen(selectierterSpielStein);
 	}
 
-	
 	/**
-	 * Schiebt die bewegeNach() Methode weiter nach SpielFeld
+	 * Mittelsstelle für bewegeNach() Controller -> SpielFeld
 	 * 
 	 * @param figur
 	 * @param zielPosX
@@ -52,11 +47,17 @@ public class Spiel implements ISpiel {
 
 	}
 
+	/**
+	 * Gibt den momentan Aktiven Spieler zurück
+	 */
 	public ISpieler gibIstAmZug() {
 
 		return aktiverSpieler;
 	}
 
+	/**
+	 * prüft Obgewonen() bei null wurde noch nicht gewonnen
+	 */
 	public boolean hatGewonnen() {
 
 		if (pruefeObGewonnen() != null) {
@@ -73,6 +74,11 @@ public class Spiel implements ISpiel {
 		return spielerWeiss;
 	}
 
+	/**
+	 * Prüft die Anzahl der Spielsteine der Spieler Weiss\Schwarz ,da keine
+	 * Steine = Verloren Prüft ob sich überhaupt noch Spielsteine bewegen
+	 * können, wenn nicht dann = Verloren
+	 */
 	public ISpieler pruefeObGewonnen() { // Winning logic
 
 		if (this.spielerSchwarz.isEmpty() == true) {
@@ -96,6 +102,9 @@ public class Spiel implements ISpiel {
 
 	}
 
+	/**
+	 * Gibt die selectierte Spielfigur zurück mit Posx und PosY
+	 */
 	public ISpielFigur gibSelektierteFigur() {
 
 		this.spielFeld.figurSelektieren(aktiverSpieler,
@@ -105,9 +114,11 @@ public class Spiel implements ISpiel {
 		return selectierterSpielStein;
 	}
 
-	
 	/**
-	 * 
+	 * Prüft denn fehlercode, bei 0 ist OK. Geht mit dem Iterator durch die
+	 * Figuren Liste und sucht nach der selektierten Figur mit der PosXY werten,
+	 * wenn gefunden wird die figur der selectiertenFigur zugewiessen. Sonst
+	 * return fehlercode
 	 */
 	public int figurSelektieren(int posX, int posY) {
 
@@ -134,6 +145,11 @@ public class Spiel implements ISpiel {
 		return fehlercode;
 	}
 
+	/**
+	 * Tauscht den aktieven Spieler mit dem Gegner spieler über ein substitut
+	 * und ruft dann die UpdateSprungFaehigkeit auf, dannach die bewegeNech
+	 * methode
+	 */
 	public void zugBeenden() {
 
 		ISpieler substitute = aktiverSpieler;
@@ -148,13 +164,17 @@ public class Spiel implements ISpiel {
 				this.selectierterSpielStein.gibPosY());
 
 	}
-
+/**
+ * Setzt für den Controller das neustarten auf true, das der weiss ja jetzt neustarten  
+ */
 	public void neustarten() {
 
 		this.controller.neustarten(true);
 
 	}
-
+/**
+ * Setzt für den Controller das aufgeben  auf true , das der weiss ja jetzt aufgeben
+ */
 	public void aufgeben() {
 
 		this.controller.aufgeben(true);
@@ -162,12 +182,4 @@ public class Spiel implements ISpiel {
 	}
 
 	
-	// setzName
-
-	// public String setzeName() {
-	//
-	//
-	//
-	// return this.name;
-	// }
 }

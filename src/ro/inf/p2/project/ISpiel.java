@@ -2,8 +2,6 @@ package ro.inf.p2.project;
 
 import java.util.ArrayList;
 
-//import java.util.ArrayList;
-
 public interface ISpiel {
 
 	boolean hatGewonnen();
@@ -21,7 +19,6 @@ public interface ISpiel {
 
 	public ISpielFigur gibSelektierteFigur();
 
-
 	public int figurSelektieren(int posX, int posY);
 
 	public void zugBeenden();
@@ -30,9 +27,8 @@ public interface ISpiel {
 
 	public void aufgeben();
 
-	public boolean bewegeNach(ISpielFigur figur, int zielPosX,int ZielPosY);
+	public boolean bewegeNach(ISpielFigur figur, int zielPosX, int ZielPosY);
 
 	boolean gibKannSpringen(ISpielFigur gibSelektierteFigur);
-	
-	
+
 }

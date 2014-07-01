@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Spieler implements ISpieler {
-	// Attribute
 
 	private String name;
 	private ArrayList<ISpielFigur> figuren;
-
-	// List<List<String>> strArray = ArrayList<List<String>> ();
-
-	
 
 	int posX;
 	int posY;
@@ -19,19 +14,21 @@ public class Spieler implements ISpieler {
 	int weiss = 1;
 	int schwarz = 0;
 
-	ArrayList<ISpielFigur> Positions = new ArrayList<ISpielFigur>();
+	// ArrayList<ISpielFigur> Positions = new ArrayList<ISpielFigur>();
 
 	/**
-	 * Macht Array mit 12 Spielsteinen für X = 0 die Schwarzen X = 1 die Weißen
-	 * @param nameSpieler2 
+	 * Macht Array mit 12 Spielsteinen (PosX,PosY,Farbe) für X = 0 die Schwarzen
+	 * X = 1 die Weißen Wird mit einem String für den Namen des Spielers und
+	 * einem int für die Farbe des Spielers aufgerufen 1 für Weiss 0 für Schwarz
+	 * 
+	 * @param nameSpieler2
 	 * 
 	 * @param x
 	 */
 
 	public Spieler(String nameSpieler2, int x) {
-		
+
 		nameSpieler2 = name;
-		
 
 		if (x == 0) {
 
@@ -68,36 +65,7 @@ public class Spieler implements ISpieler {
 			SpielerSchwarz.add(new SpielStein(7, 0, 0)); // H1
 			SpielerSchwarz.add(new SpielStein(7, 2, 0)); // H3
 
-			// Map<Integer,Integer> PosX = new HashMap<Integer,Integer>();
-			// PosX.put(1,1);
-
-			// ArrayList<ISpielFigur> SP = new ArrayList<ISpielFigur>();
-
-			// SP.set(posX & posY, null);
-
-			//
-			// /**
-			// * X-Y Positionen mit 1 kennz.
-			// */
-			// int[][] Positions = new int[7][7] ;
-			//
-			// Positions [0][0] =1; // A1
-			// Positions [1][1] =1; // B2
-			// Positions [0][2] =1; // A3
-			// Positions [2][0] =1; // C1
-			// Positions [3][1] =1; // D2
-			// Positions [2][2] =1; // C3
-			// Positions [4][0] =1; // E1
-			// Positions [5][1] =1; // F2
-			// Positions [4][2] =1; // E3
-			// Positions [6][0] =1; // G1
-			// Positions [7][1] =1; // H2
-			// Positions [6][2] =1; // G3
-			//
-			//
-
-			// List<int[]> Spieler = Arrays.asList(Positions); // Array in der
-			// Liste ......
+			
 
 		}
 
@@ -153,5 +121,4 @@ public class Spieler implements ISpieler {
 		return this.name;
 	}
 
-	
 }

@@ -26,10 +26,10 @@ public abstract class TestSpielfigur extends TestCase implements ISpielFigur {
 
 		List<SpielStein> SpielerSchwarz = new ArrayList<SpielStein>();
 
-		
+		 
 		// PosX,PosY,Farbe
-		SpielerWeiss.add(new SpielStein(3, 6, 1)); // D7
-	//	SpielerWeiss.add(new SpielStein(0, 7, 1)); // A8
+		SpielerWeiss.add(new SpielStein(3, 6, 1)); 		// D7
+		SpielerSchwarz.add(new SpielStein(3, 6, 1));	// D7
 		
 		
 
