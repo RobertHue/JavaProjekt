@@ -16,7 +16,7 @@ public class Spiel implements ISpiel {
 		return false;
 	}
 
-	public ISpieler gibIstAmZug() { // Was was noch kommt...
+	public ISpieler gibIstAmZug() { // Was was noch kommt... 
 		// TODO Auto-generated method stub
 
 		this.istAmZug();
