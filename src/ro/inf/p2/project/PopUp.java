@@ -18,7 +18,9 @@ public class PopUp implements IPopUp, ActionListener
 	public boolean antwort=false;
 	private JFrame pop;
 	IController controller;
-	public JButton ok, ja, nein;
+	public JButton ok, ja_a, nein_a, ja_ns, nein_ns, ja_s, nein_s, ja_w, nein_w;
+	public String spieler1name, spieler2name;
+	public JTextField spieler1, spieler2;
 	//Konstruktor
 	
 	public PopUp(IController ctrl)
@@ -30,38 +32,37 @@ public class PopUp implements IPopUp, ActionListener
 	
 	
 
-	@Override
 	public void fehlermeldungAusgeben(int code) 
 	{
 		switch(code)
 		{
 			case 1: //Feld leer
 			{
-				JOptionPane.showMessageDialog(null,"Das ausgew‰hlte Feld ist leer!","Ung¸ltige Aktion", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Das ausgewËáßlte Feld ist leer!","UngÔøΩltige Aktion", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 		
 			case 2: //Falsche Farbe der Figur
 			{
-				JOptionPane.showMessageDialog(null,"Gegnerische Figur ausgew‰hlt, bitte eigene Figur ausw‰hlen","Ung¸ltige Aktion", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Gegnerische Figur ausgewËáßlt, bitte eigene Figur auswËáßlen","UngÔøΩltige Aktion", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 		
 			case 3: //Figur kann sich nicht bewegen
 			{
-				JOptionPane.showMessageDialog(null,"Bewegung dieser Figur ist blockiert!","Ung¸ltige Aktion", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Bewegung dieser Figur ist blockiert!","UngÔøΩltige Aktion", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 		
 			case 4: //Figur darf sich nicht bewegen(andere muss schlagen)
 			{
-				JOptionPane.showMessageDialog(null,"Figur darf sich nicht bewegen, eine andere muss schlagen!","Ung¸ltige Aktion", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Figur darf sich nicht bewegen, eine andere muss schlagen!","UngÔøΩltige Aktion", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 		
 			case 5: //Figur kann sich nicht auf das Feld bewegen
 			{
-				JOptionPane.showMessageDialog(null,"Figur kann nicht auf dieses Feld bewegt werden!","Ung¸ltige Aktion", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,"Figur kann nicht auf dieses Feld bewegt werden!","UngÔøΩltige Aktion", JOptionPane.ERROR_MESSAGE);
 				break;
 			}
 		
@@ -69,15 +70,13 @@ public class PopUp implements IPopUp, ActionListener
 		
 	}
 
-	@Override
-	public boolean popUpAufrufen(int code, ISpieler spieler_1, ISpieler spieler_2) 
+	public void popUpAufrufen(int code, String spieler) 
 	{
 	
 		switch(code)
 		{
 			case 1: //Neues Spiel
 			{
-				antwort=false;
 				JButton ok = new JButton("Ok");
 				JTextField spieler1 = new JTextField(10);
 				JTextField spieler2 = new JTextField(10);
@@ -95,22 +94,16 @@ public class PopUp implements IPopUp, ActionListener
 				ok.addActionListener(this);
 				pop.setVisible(true);
 				
-				if(antwort && spieler1 != null || spieler2 != null)
-				{
-					spieler_1.setzeName(spieler1.getText());
-					spieler_2.setzeName(spieler2.getText());
-					pop.dispose();
-				}
+
 				break;
 			}
 		
 			case 2: //Aufgeben
 			{
-				antwort=false;
-				JButton ja = new JButton("Ja");
-				ja.addActionListener(this);
-				JButton nein = new JButton("Nein");
-				nein.addActionListener(this);
+				JButton ja_a = new JButton("Ja");
+				ja_a.addActionListener(this);
+				JButton nein_a = new JButton("Nein");
+				nein_a.addActionListener(this);
 				
 				JFrame pop = new JFrame("Aufgeben");
 				pop.setPreferredSize(new Dimension(200,200));
@@ -118,20 +111,20 @@ public class PopUp implements IPopUp, ActionListener
 				pop.setLayout(new BorderLayout());
 				
 				pop.add(new JLabel("Wirklich aufgeben?"), BorderLayout.NORTH);
-				pop.add(ja, BorderLayout.WEST);
-				pop.add(nein, BorderLayout.EAST);
+				pop.add(ja_a, BorderLayout.WEST);
+				pop.add(nein_a, BorderLayout.EAST);
 				pop.setVisible(true);
+				
 				
 				break;
 			}
 		
 			case 3: //Neustarten
 			{
-				antwort=false;
-				JButton ja = new JButton("Ja");
-				ja.addActionListener(this);
-				JButton nein = new JButton("Nein");
-				nein.addActionListener(this);
+				JButton ja_ns = new JButton("Ja");
+				ja_ns.addActionListener(this);
+				JButton nein_ns = new JButton("Nein");
+				nein_ns.addActionListener(this);
 				
 				JFrame pop = new JFrame("Neustart");
 				pop.setPreferredSize(new Dimension(200,200));
@@ -139,28 +132,27 @@ public class PopUp implements IPopUp, ActionListener
 				pop.setLayout(new BorderLayout());
 				
 				pop.add(new JLabel("Spiel wirklich neu starten?"), BorderLayout.NORTH);
-				pop.add(ja, BorderLayout.WEST);
-				pop.add(nein, BorderLayout.EAST);
+				pop.add(ja_ns, BorderLayout.WEST);
+				pop.add(nein_ns, BorderLayout.EAST);
 				pop.setVisible(true);
 				break;
 			}
 		
 			case 4: //Siegesnachricht
 			{
-				antwort=false;
-				JButton ja = new JButton("Rematch?");
-				ja.addActionListener(this);
-				JButton nein = new JButton("Beenden");
-				nein.addActionListener(this);
+				JButton ja_s = new JButton("Rematch?");
+				ja_s.addActionListener(this);
+				JButton nein_s = new JButton("Beenden");
+				nein_s.addActionListener(this);
 				
 				JFrame pop = new JFrame("Ende");
 				pop.setPreferredSize(new Dimension(200,200));
 				pop.setResizable(false);
 				pop.setLayout(new BorderLayout());
 				
-				pop.add(new JLabel(spieler_1+"hat gewonnen!"), BorderLayout.NORTH);
-				pop.add(ja, BorderLayout.WEST);
-				pop.add(nein, BorderLayout.EAST);
+				pop.add(new JLabel(spieler1name+"hat gewonnen!"), BorderLayout.NORTH);
+				pop.add(ja_s, BorderLayout.WEST);
+				pop.add(nein_s, BorderLayout.EAST);
 				pop.setVisible(true);
 				
 				
@@ -169,48 +161,126 @@ public class PopUp implements IPopUp, ActionListener
 		
 			case 5: //Weiteren Stein schlagen
 			{
-				antwort=false;
-				JButton ja = new JButton("Ja");
-				ja.addActionListener(this);
-				JButton nein = new JButton("Nein");
-				nein.addActionListener(this);
+				JButton ja_w = new JButton("Ja");
+				ja_w.addActionListener(this);
+				JButton nein_w = new JButton("Nein");
+				nein_w.addActionListener(this);
 				
-				JFrame pop = new JFrame("Mˆglichkeit weiteren Stein zu schlagen");
+				JFrame pop = new JFrame("MÓíèlichkeit weiteren Stein zu schlagen");
 				pop.setPreferredSize(new Dimension(200,200));
 				pop.setResizable(false);
 				pop.setLayout(new BorderLayout());
 				
 				pop.add(new JLabel("Weiteren Stein schlagen?"), BorderLayout.NORTH);
-				pop.add(ja, BorderLayout.WEST);
-				pop.add(nein, BorderLayout.EAST);
+				pop.add(ja_w, BorderLayout.WEST);
+				pop.add(nein_w, BorderLayout.EAST);
 				pop.setVisible(true);
 			}
 		}
-		return antwort;
+		
 	
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
 		if(e.getSource() == this.ok)
 		{
-			antwort=true;
+			if(spieler1 != null && spieler2 != null)
+			{
+				spieler1name=spieler1.getText();
+				spieler2name=spieler2.getText();
+				pop.setVisible(false);
+				
+				controller.neuesSpielStarten(spieler1name,spieler2name);
+			
+				
+				//ÔøΩber Funktion neues Spiel im Controller ÔøΩbergeben
+				pop.dispose();
+			}
+
+			
+
 		}
 		
-		if(e.getSource() == this.ja)
+		if(e.getSource() == this.ja_a)
 		{
-			//TODO
-			antwort=true;
+			pop.setVisible(false);
+			controller.aufgeben(true);
+
 			pop.dispose();
+			//TODO Verdammt nochmal merk dir das dort die methodenaufrufe sind!!!
+
 		}
 		
-		if(e.getSource() == this.nein)
+		if(e.getSource() == this.nein_a)
 		{
-			//TODO
-			antwort=false;
+			pop.setVisible(false);
+			controller.aufgeben(false);
+
 			pop.dispose();
+			//TODO
+
 		}
+		
+		if(e.getSource() == this.ja_ns)
+		{
+			controller.neustarten(true);
+			pop.setVisible(false);
+			pop.dispose();
+			//TODO
+
+		}
+		
+		if(e.getSource() == this.nein_ns)
+		{
+			pop.setVisible(false);
+			controller.neustarten(false);
+
+			pop.dispose();
+			//TODO
+
+		}
+		
+		if(e.getSource() == this.ja_s)
+		{
+			pop.setVisible(false);
+			controller.ende(true);
+
+			pop.dispose();
+			//TODO
+
+		}
+		
+		if(e.getSource() == this.nein_s)
+		{
+			pop.setVisible(false);
+			controller.ende(false);
+			
+			pop.dispose();
+			//TODO
+
+		}
+		
+		if(e.getSource() == this.ja_w)
+		{
+			pop.setVisible(false);
+			controller.nochmalSpringen(true);
+			
+			pop.dispose();
+			//TODO
+
+		}
+		
+		if(e.getSource() == this.nein_w)
+		{
+			pop.setVisible(false);
+			controller.nochmalSpringen(false);
+			
+			pop.dispose();
+			//TODO
+		}
+		
+		
 			
 		
 	}

@@ -153,4 +153,5 @@ public class Spieler implements ISpieler {
 		return this.name;
 	}
 
+	
 }

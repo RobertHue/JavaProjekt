@@ -1,32 +1,40 @@
 package ro.inf.p2.project;
 
 import java.util.ArrayList;
-import java.util.Set;
-
-import sun.security.action.GetBooleanAction;
+import java.util.Iterator;
 
 public class Spiel implements ISpiel {
 
-	ISpielFigur SpielStein;
+	ISpielFigur selectierterSpielStein;
 	ISpieler aktiverSpieler;
 	ISpielFeld spielFeld;
 	ISpieler gegnerSpieler;
 	IController controller;
 
+	/**
+	 * Schiebt die bewegeNach() Methode weiter nach SpielFeld
+	 * 
+	 * @param figur
+	 * @param zielPosX
+	 * @param zielPosY
+	 * @return
+	 */
 	public boolean bewegeNach(ISpielFigur figur, int zielPosX, int zielPosY) {
 
-		return this.spielFeld.bewegeNach(SpielStein, SpielStein.gibPosX(),
-				SpielStein.gibPosY());
+		return this.spielFeld.bewegeNach(figur, zielPosX, zielPosY);
 
 	}
 
+	/**
+	 * Konstruktor von Spiel
+	 * 
+	 * @param nameSP1
+	 * @param nameSP2
+	 */
 	public Spiel(String nameSP1, String nameSP2) {
 
-		SpielFeld spieler = new SpielFeld(nameSP1, nameSP2);
-		
-		
-		
-		
+		SpielFeld player = new SpielFeld(nameSP1, nameSP2);
+
 	}
 
 	public ISpieler gibIstAmZug() {
@@ -76,14 +84,37 @@ public class Spiel implements ISpiel {
 	public ISpielFigur gibSelektierteFigur() {
 
 		this.spielFeld.figurSelektieren(aktiverSpieler,
-				this.SpielStein.gibPosX(), SpielStein.gibPosY());
+				this.selectierterSpielStein.gibPosX(),
+				selectierterSpielStein.gibPosY());
 
-		return SpielStein;
+		return selectierterSpielStein;
 	}
 
+	
+	/**
+	 * 
+	 */
 	public int figurSelektieren(int posX, int posY) {
 
 		int fehlercode = spielFeld.figurSelektieren(aktiverSpieler, posX, posY);
+
+		if (fehlercode == 0) {
+
+			ArrayList<ISpielFigur> tmp = spielFeld.gibAlleSpielFiguren();
+
+			Iterator<ISpielFigur> i = tmp.iterator();
+
+			while (i.hasNext()) {
+
+				ISpielFigur sucheSelktierteFigur = i.next();
+
+				if (sucheSelktierteFigur.gibPosX() == posX
+						&& sucheSelktierteFigur.gibPosY() == posY) {
+
+					this.selectierterSpielStein = sucheSelktierteFigur;
+				}
+			}
+		}
 
 		return fehlercode;
 	}
@@ -97,8 +128,9 @@ public class Spiel implements ISpiel {
 
 		spielFeld.updateSprungFaehigkeiten(aktiverSpieler);
 
-		this.spielFeld.bewegeNach(SpielStein, this.SpielStein.gibPosX(),
-				this.SpielStein.gibPosY());
+		this.spielFeld.bewegeNach(selectierterSpielStein,
+				this.selectierterSpielStein.gibPosX(),
+				this.selectierterSpielStein.gibPosY());
 
 	}
 

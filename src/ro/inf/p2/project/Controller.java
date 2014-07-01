@@ -2,8 +2,8 @@ package ro.inf.p2.project;
 import java.util.ArrayList;
 
 /**
-*@author Pascal Zimmermann
-*@date 26.06.14
+*@author Pascal Zimmermann, Maxi Bottin
+*@date 31.06.14
 */
 
 public class Controller implements IController {
@@ -11,9 +11,14 @@ public class Controller implements IController {
 	IPopUp popup;
 	ISpielfeldAnzeige anzeige;
 	ISpiel spiel;
+	IController control;
 	
 	//Konstruktor
 	public  Controller(){
+		IPopUp popup = new PopUp(control);
+		popUpAufrufen(1, null);
+		
+	
 		//TODO Maxi
 	}
 	
@@ -41,7 +46,7 @@ public class Controller implements IController {
 	*/
 	public void neustartGedrueckt() {
 		//System.out.println("Gedrueckt: Neustart");
-		popUpAufrufen(3,null,null);
+		popUpAufrufen(3,null);
 		
 	}
 
@@ -50,25 +55,23 @@ public class Controller implements IController {
 	public void aufgebenGedrueckt() {
 		//System.out.println("Gedrueckt: Aufgabe");
 		
-		popUpAufrufen(2,null,null);
+		popUpAufrufen(2,null);
 		
 		
 	}
 
 	
-	public void popUpAufrufen(int code, ISpieler spieler1, ISpieler spieler2){
+	public void popUpAufrufen(int code, String spieler){
 		//TODO: Maxis Reich
-		popup.popUpAufrufen(code, spieler1, spieler2);
+		if (anzeige != null)
+		{
+			anzeige.fokusAus();
+			popup.popUpAufrufen(code, spieler);
+		}
+
 
 		
 	}
-	
-	//Unnötig, wurde aus IController entfernt
-	/*
-	public void popUpAufrufen(int code, ISpieler gewinner){
-		//TODO: Maxis Reich
-	}
-	*/
 	public void fehlermeldungAusgeben (int code) {
 		
 		//TODO: Maxis Reich
@@ -94,7 +97,7 @@ public class Controller implements IController {
 				return;
 			} else {
 				anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
-									spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+									spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 				return;
 			}
 
@@ -107,7 +110,7 @@ public class Controller implements IController {
 		//Pruefe, ob es geklappt hat
 		 if (retwert == 0) {
 		 	anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
-		 						spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+		 						spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 			return;
 		} else if (retwert == 4|| retwert == 3) {
 			fehlermeldungAusgeben(retwert);
@@ -120,27 +123,33 @@ public class Controller implements IController {
 		 	return;
 		} else 
 		//Pruefe, ob die Figur weiterspringen kann
-		if(spiel.gibKannSpringen(ISpielFigur figur) == true) {
+		if(spiel.gibKannSpringen(spiel.gibSelektierteFigur()) == true) {
 			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
-								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
-			popUpAufrufen(5);
+								spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
+			popUpAufrufen(5, null);
 			return;
 		}
 		//Pruefe, ob jemand gewonnen hat
 		ISpieler gewinner = spiel.pruefeObGewonnen();
 		if(gewinner != null){
 			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
-								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());	
-			popUpAufrufen(4, gewinner, null);
+								spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());	
+			popUpAufrufen(4, gewinner.gibName());
 		}
 		//sonst einfach nur den Zug beenden
 		spiel.zugBeenden();
 		anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
-							spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+							spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 		
 	}
 	
 	public void neuesSpielStarten(String name1, String name2){
+
+		ISpiel spiel = new Spiel(name1, name2);
+		ISpielfeldAnzeige anzeige = new SpielfeldAnzeige(control);
+		anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+				spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
+		
 		
 		
 	}
@@ -159,8 +168,8 @@ public class Controller implements IController {
 		
 		if (jaodernein == true) {
 			spiel.neustarten();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
-								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+								spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 		}
 		
 		
@@ -172,8 +181,8 @@ public class Controller implements IController {
 		
 		if (jaodernein == true) {
 			spiel.neustarten();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
-								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+								spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 			anzeige.fokusAn();
 		} else {
 			System.exit(0);
@@ -190,11 +199,15 @@ public class Controller implements IController {
 		
 		} else {
 			spiel.zugBeenden();
-			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz,
-								spiel.gibIstAmZug(), spiel.gibSelektierteFigur());
+			anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
+								spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 			anzeige.fokusAn();
 		}
 		
+	}
+	public static void main(String [] args)
+	{
+		IController control = new Controller();
 	}
 
 }
