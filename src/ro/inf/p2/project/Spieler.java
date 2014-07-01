@@ -1,10 +1,7 @@
 package ro.inf.p2.project;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Spieler implements ISpieler {
 	// Attribute
@@ -14,7 +11,7 @@ public class Spieler implements ISpieler {
 
 	// List<List<String>> strArray = ArrayList<List<String>> ();
 
-	int XX;
+	
 
 	int posX;
 	int posY;
@@ -32,6 +29,7 @@ public class Spieler implements ISpieler {
 
 	public Spieler(int x) {
 		
+		String name = this.name;
 
 		if (x == 0) {
 
