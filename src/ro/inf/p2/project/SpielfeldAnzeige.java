@@ -200,7 +200,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 					ListIterator<ISpielFigur> iter = spieler1.listIterator();
 					while(iter.hasNext()){
 						ISpielFigur temp = iter.next();
-						if ((temp.gibPosX() == (x+1))&& (temp.gibPosY() == (y+1))){
+						if ((temp.gibPosX() == (x))&& (temp.gibPosY() == (y))){
 							gefunden = true;
 							//Pruefe ob Dame
 							if(temp.getClass().getName() == "DameStein" ){
@@ -228,7 +228,7 @@ public class SpielfeldAnzeige implements ActionListener, ISpielfeldAnzeige {
 						iter = spieler2.listIterator();
 						while(iter.hasNext()){
 							ISpielFigur temp = iter.next();
-							if ((temp.gibPosX() == (x+1))&& (temp.gibPosY() == (y+1))){
+							if ((temp.gibPosX() == (x))&& (temp.gibPosY() == (y))){
 								gefunden = true;
 								//Pruefe ob Dame
 								if(temp.getClass().getName() == "DameStein" ){

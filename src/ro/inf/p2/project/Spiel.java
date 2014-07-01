@@ -18,7 +18,7 @@ public class Spiel implements ISpiel {
 	 */
 	public boolean gibKannSpringen(ISpielFigur gibSelektierteFigur) {
 
-		return this.gibKannSpringen(selectierterSpielStein);
+		return  spielFeld.kannSpielFigurSpringen(selectierterSpielStein);  //this.gibKannSpringen(selectierterSpielStein);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class Spiel implements ISpiel {
 	 */
 	public Spiel(String nameSP1, String nameSP2) {
 
-		SpielFeld player = new SpielFeld(nameSP1, nameSP2);
+		spielFeld  = new SpielFeld(nameSP1, nameSP2);
 
 	}
 

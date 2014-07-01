@@ -8,7 +8,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-public abstract class TestSpielfigur extends TestCase implements ISpielFigur {
+public abstract class TestSpielfigur extends TestCase  {
 
 
 	private static Logger logger = Logger.getLogger(SpielStein.class.getName());
