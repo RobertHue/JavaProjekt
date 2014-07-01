@@ -16,10 +16,10 @@ public class SpielFeld implements ISpielFeld {
 	/**
 	 * erzeugt ein SpielFeld mit 2 Spielern
 	 */
-	public SpielFeld() {
+	public SpielFeld(String nameSpieler1, String nameSpieler2) {
 		// ruft den Konstruktor von Spieler auf
-		spielerSchwarz = new Spieler(0);	// Spieler mit schwarzen SpielFiguren
- 		spielerWeiss   = new Spieler(1);	// Spieler mit weissen SpielFiguren
+		spielerSchwarz = new Spieler(nameSpieler1, 0);	// Spieler mit schwarzen SpielFiguren
+ 		spielerWeiss   = new Spieler(nameSpieler2, 1);	// Spieler mit weissen SpielFiguren
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class SpielFeld implements ISpielFeld {
 	 * Sprung-Faehigkeiten der Steine des Spielers - welcher am Zug ist - zu setzten.
 	 * @param spieler = Turn-Player
 	 */
-	public void updateStatus(ISpieler spieler)
+	public void updateSprungFaehigkeiten(ISpieler spieler)
 	{
 		Iterator<ISpielFigur> it;
 		// setze Status von vorherigen Zug zurueck

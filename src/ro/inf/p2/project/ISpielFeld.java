@@ -12,8 +12,8 @@ public interface ISpielFeld {
 	public static final int MAX_X = 8;
 	public static final int MAX_Y = 8;
 	
-	// für den Anfang eins SpielZugs 
-	public void updateStatus(ISpieler spieler);
+	// für den Anfang eins SpielZugs
+	public void updateSprungFaehigkeiten(ISpieler spieler);
 	
 	// Getter
 	public ISpieler gibSpielerSchwarz();
