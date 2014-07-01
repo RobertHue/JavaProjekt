@@ -20,7 +20,7 @@ public interface ISpiel {
 	ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
 	
 	
-	public ArrayList<ISpielFigur> gibSpielFigurenSchwartz();
+	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz();
 	public ArrayList<ISpielFigur> gibSpielFigurenWeiss();
 
 	
@@ -31,7 +31,7 @@ public interface ISpiel {
 	/*
 	 * istAmZug() ISpieler
 	 * hatGewonnen() ISpieler
-	 * gibSpielFigurenSchwartz() ArrayList <ISpielFigur>
+	 * gibSpielFigurenSchwarz() ArrayList <ISpielFigur>
 	 * gibSpielFigurenWeiß() ArrayList <ISpielFigur>
 	 * 
 	 * prüfeObGewonnen() ISpieler

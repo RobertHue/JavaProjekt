@@ -22,7 +22,7 @@ public abstract class TestSpielfigur    extends TestCase implements ISpielFigur 
 	
 	int farbe;
 	int fweiss =1;
-	int fschwartz= 0; 
+	int fschwarz= 0; 
 
 
 	@Test
@@ -32,7 +32,7 @@ public abstract class TestSpielfigur    extends TestCase implements ISpielFigur 
 		
 		
 		SpielStein weiss = new SpielStein(posX, posY, fweiss);
-		SpielStein schwartz = new SpielStein(posX, posY, fschwartz);
+		SpielStein schwarz = new SpielStein(posX, posY, fschwarz);
 		
 		try {
 			
@@ -47,13 +47,13 @@ public abstract class TestSpielfigur    extends TestCase implements ISpielFigur 
 			assertTrue(weiss.gueltigeBewegung(1, 2) == false );
 			
 			
-			assertTrue(schwartz.gueltigeBewegung( 0, 0) == true );
-			assertTrue(schwartz.gueltigeBewegung(-1,-1) == true );
-			assertTrue(schwartz.gueltigeBewegung( 1,-1) == true );
+			assertTrue(schwarz.gueltigeBewegung( 0, 0) == true );
+			assertTrue(schwarz.gueltigeBewegung(-1,-1) == true );
+			assertTrue(schwarz.gueltigeBewegung( 1,-1) == true );
 			
-			assertTrue(schwartz.gueltigeBewegung(-2, 1) == false );
-			assertTrue(schwartz.gueltigeBewegung(0, 0) == false );
-			assertTrue(schwartz.gueltigeBewegung(0, 0) == false );
+			assertTrue(schwarz.gueltigeBewegung(-2, 1) == false );
+			assertTrue(schwarz.gueltigeBewegung(0, 0) == false );
+			assertTrue(schwarz.gueltigeBewegung(0, 0) == false );
 		
 			
 		//fail("Not yet implemented");		Auf keinen Fall ereichbarer Code Hard Stop !!!

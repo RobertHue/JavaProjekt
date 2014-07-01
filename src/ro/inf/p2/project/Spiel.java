@@ -33,7 +33,7 @@ public class Spiel implements ISpiel {
 		return false;
 	}
 
-	public ArrayList<ISpielFigur> gibSpielFigurenSchwartz() {
+	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz() {
 		return spielerSchwarz;
 	}
 

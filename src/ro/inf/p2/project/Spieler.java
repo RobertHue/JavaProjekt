@@ -20,12 +20,12 @@ public class Spieler implements ISpieler {
 	int posY;
 	int farbe;
 	int weiss = 1;
-	int schwartz = 0;
+	int schwarz = 0;
 
 	ArrayList<ISpielFigur> Positions = new ArrayList<ISpielFigur>();
 
 	/**
-	 * Macht Array mit 12 Spielsteinen für X = 0 die Schwartzen X = 1 die Weißen
+	 * Macht Array mit 12 Spielsteinen für X = 0 die Schwarzen X = 1 die Weißen
 	 * 
 	 * @param x
 	 */
@@ -52,21 +52,21 @@ public class Spieler implements ISpieler {
 			SpielerWeiss.add(new SpielStein(7, 6, 1)); // H7
 
 		} else if (x == 1) {
-			List<SpielStein> SpielerSchwartz = new ArrayList<SpielStein>();
+			List<SpielStein> SpielerSchwarz = new ArrayList<SpielStein>();
 
 			// PosX,PosY,Farbe
-			SpielerSchwartz.add(new SpielStein(0, 1, 0)); // A2
-			SpielerSchwartz.add(new SpielStein(1, 0, 0)); // B1
-			SpielerSchwartz.add(new SpielStein(1, 2, 0)); // B3
-			SpielerSchwartz.add(new SpielStein(2, 1, 0)); // C2
-			SpielerSchwartz.add(new SpielStein(3, 0, 0)); // D1
-			SpielerSchwartz.add(new SpielStein(3, 2, 0)); // D3
-			SpielerSchwartz.add(new SpielStein(4, 1, 0)); // E2
-			SpielerSchwartz.add(new SpielStein(5, 0, 0)); // F1
-			SpielerSchwartz.add(new SpielStein(5, 2, 0)); // F3
-			SpielerSchwartz.add(new SpielStein(6, 1, 0)); // G2
-			SpielerSchwartz.add(new SpielStein(7, 0, 0)); // H1
-			SpielerSchwartz.add(new SpielStein(7, 2, 0)); // H3
+			SpielerSchwarz.add(new SpielStein(0, 1, 0)); // A2
+			SpielerSchwarz.add(new SpielStein(1, 0, 0)); // B1
+			SpielerSchwarz.add(new SpielStein(1, 2, 0)); // B3
+			SpielerSchwarz.add(new SpielStein(2, 1, 0)); // C2
+			SpielerSchwarz.add(new SpielStein(3, 0, 0)); // D1
+			SpielerSchwarz.add(new SpielStein(3, 2, 0)); // D3
+			SpielerSchwarz.add(new SpielStein(4, 1, 0)); // E2
+			SpielerSchwarz.add(new SpielStein(5, 0, 0)); // F1
+			SpielerSchwarz.add(new SpielStein(5, 2, 0)); // F3
+			SpielerSchwarz.add(new SpielStein(6, 1, 0)); // G2
+			SpielerSchwarz.add(new SpielStein(7, 0, 0)); // H1
+			SpielerSchwarz.add(new SpielStein(7, 2, 0)); // H3
 
 			// Map<Integer,Integer> PosX = new HashMap<Integer,Integer>();
 			// PosX.put(1,1);
@@ -141,7 +141,7 @@ public class Spieler implements ISpieler {
 	}
 
 	/**
-	 * Gibt alle Figuren zurück. Schwartz & Weiss
+	 * Gibt alle Figuren zurück. Schwarz & Weiss
 	 */
 
 	public ArrayList<ISpielFigur> gibFiguren() {
