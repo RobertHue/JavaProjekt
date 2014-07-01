@@ -6,14 +6,14 @@ public interface ISpiel {
 
 	boolean hatGewonnen();
 
-	ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
-	ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+	static final ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
+	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
 
-	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz();
+	public  ArrayList<ISpielFigur> gibSpielFigurenSchwarz();
 
 	public ArrayList<ISpielFigur> gibSpielFigurenWeiss();
 
-	public ISpieler pruefeObGewonnen();
+	public  ISpieler pruefeObGewonnen();
 
 	public ISpieler gibIstAmZug();
 
