@@ -12,21 +12,24 @@ public class Spiel implements ISpiel {
 	ISpielFeld spielFeld;
 	ISpieler gegnerSpieler;
 	IController controller;
-	
-	
-	public Spiel (String nameSP1, String nameSP2) {
-		
+
+	public boolean bewegeNach(ISpielFigur figur, int zielPosX, int zielPosY) {
+
+		return this.spielFeld.bewegeNach(SpielStein, SpielStein.gibPosX(),
+				SpielStein.gibPosY());
+
+	}
+
+	public Spiel(String nameSP1, String nameSP2) {
+
+		SpielFeld spieler = new SpielFeld(nameSP1, nameSP2);
 		
 		
 		
 		
 	}
-	
-	
-	public ISpieler gibIstAmZug() { 
-		
-		
-		
+
+	public ISpieler gibIstAmZug() {
 
 		return aktiverSpieler;
 	}
@@ -57,12 +60,13 @@ public class Spiel implements ISpiel {
 			return aktiverSpieler;
 		}
 
-		else if (spielFeld.figurenDieSichBewegenKoennen(aktiverSpieler).isEmpty()
-				
-				&& spielFeld.figurenDieSpringenKoennen(aktiverSpieler).isEmpty()) { 
-			
+		else if (spielFeld.figurenDieSichBewegenKoennen(aktiverSpieler)
+				.isEmpty()
+
+		&& spielFeld.figurenDieSpringenKoennen(aktiverSpieler).isEmpty()) {
+
 			return gegnerSpieler;
-			
+
 		}
 
 		return null;
@@ -78,49 +82,44 @@ public class Spiel implements ISpiel {
 	}
 
 	public int figurSelektieren(int posX, int posY) {
-		
-		 int fehlercode =spielFeld.figurSelektieren(aktiverSpieler, posX, posY);
-		
-		 
-		
+
+		int fehlercode = spielFeld.figurSelektieren(aktiverSpieler, posX, posY);
+
 		return fehlercode;
 	}
 
 	public void zugBeenden() {
-		
+
 		ISpieler substitute = aktiverSpieler;
-		
-		 gegnerSpieler = aktiverSpieler;
+
+		gegnerSpieler = aktiverSpieler;
 		aktiverSpieler = substitute;
-		
-		spielFeld.updateStatus(aktiverSpieler);
-		
-		
-		this.spielFeld.bewegeNach(SpielStein, this.SpielStein.gibPosX(), this.SpielStein.gibPosY());
-		 
-		
-		
+
+		spielFeld.updateSprungFaehigkeiten(aktiverSpieler);
+
+		this.spielFeld.bewegeNach(SpielStein, this.SpielStein.gibPosX(),
+				this.SpielStein.gibPosY());
+
 	}
 
 	public void neustarten() {
 
 		this.controller.neustarten(true);
-		
+
 	}
 
 	public void aufgeben() {
-		
+
 		this.controller.aufgeben(true);
 
 	}
 
 	// setzName
-	
 
-//	public String setzeName() {
-//
-//		
-//		
-//		return this.name;
-//	}
+	// public String setzeName() {
+	//
+	//
+	//
+	// return this.name;
+	// }
 }

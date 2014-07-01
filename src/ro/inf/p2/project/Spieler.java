@@ -23,13 +23,15 @@ public class Spieler implements ISpieler {
 
 	/**
 	 * Macht Array mit 12 Spielsteinen für X = 0 die Schwarzen X = 1 die Weißen
+	 * @param nameSpieler2 
 	 * 
 	 * @param x
 	 */
 
-	public Spieler(int x) {
+	public Spieler(String nameSpieler2, int x) {
 		
-		String name = this.name;
+		nameSpieler2 = name;
+		
 
 		if (x == 0) {
 
