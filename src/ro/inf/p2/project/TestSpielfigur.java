@@ -48,9 +48,13 @@ public abstract class TestSpielfigur extends TestCase implements ISpielFigur {
 			assertTrue(((SpielStein) SpielerWeiss).gueltigeBewegung(0, 0) == false);
 
 			
-			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(2, 5) == true); //C6
-			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(2, 5) == true); //C6
-			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(2, 5) == true); //C6
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(2, 7) == true); //C8
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(4, 7) == true); //E8
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(0, 0) == true); //D7
+			
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(2, 5) == false); //C6
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(4, 5) == false); //C6
+			assertTrue(((SpielStein) SpielerSchwarz).gueltigeBewegung(3, 7) == false); //D6
 			
 
 			// fail("Not yet implemented"); Auf keinen Fall ereichbarer Code

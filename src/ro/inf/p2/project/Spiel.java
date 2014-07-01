@@ -8,29 +8,27 @@ import sun.security.action.GetBooleanAction;
 public class Spiel implements ISpiel {
 
 	ISpielFigur SpielStein;
-	ISpieler Spieler;
+	ISpieler aktiverSpieler;
 	ISpielFeld spielFeld;
+	ISpieler gegnerSpieler;
+	
+	
+	
+	
+	public ISpieler gibIstAmZug() { 
+		
+		
+		
 
-	public boolean istAmZug() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public ISpieler gibIstAmZug() { // Was was noch kommt... 
-		// TODO Auto-generated method stub
-
-		this.istAmZug();
-
-		return Spieler;
+		return aktiverSpieler;
 	}
 
 	public boolean hatGewonnen() {
 
-		 if (pruefeObGewonnen() != null) {
-			 return  true;
-		 }
-		 else
-		return false;
+		if (pruefeObGewonnen() != null) {
+			return true;
+		} else
+			return false;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz() {
@@ -45,20 +43,18 @@ public class Spiel implements ISpiel {
 
 		if (this.spielerSchwarz.isEmpty() == true) {
 
-			return Spieler;
+			return aktiverSpieler;
 
 		} else if (this.spielerWeiss.isEmpty() == true) {
-			return Spieler;
+			return aktiverSpieler;
 		}
 
-		else if (SpielStein.kannIchSpringen() == false) { // Warscheinlich
-															// Falsch... Brauch
-															// die methode die
-															// die
-															// BewegungsFähigket
-															// prüft
-			return Spieler;
-			//
+		else if (spielFeld.figurenDieSichBewegenKoennen(aktiverSpieler).isEmpty()
+				
+				&& spielFeld.figurenDieSpringenKoennen(aktiverSpieler).isEmpty()) { 
+			
+			return gegnerSpieler;
+			
 		}
 
 		return null;
@@ -67,10 +63,35 @@ public class Spiel implements ISpiel {
 
 	public ISpielFigur gibSelektierteFigur() {
 
-		this.spielFeld.figurSelektieren(Spieler, this.SpielStein.gibPosX(),
-				SpielStein.gibPosY());
+		this.spielFeld.figurSelektieren(aktiverSpieler,
+				this.SpielStein.gibPosX(), SpielStein.gibPosY());
 
 		return SpielStein;
+	}
+
+	public int figurSelektieren(int posX, int posY) {
+		
+		 int fehlercode =spielFeld.figurSelektieren(aktiverSpieler, posX, posY);
+		
+		 
+		
+		// TODO Auto-generated method stub
+		return fehlercode;
+	}
+
+	public void zugBeenden() {
+		// TODO Auto-generated method stub 		Für den nächsten Spieler gleich Springcheck
+
+	}
+
+	public void neustarten() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void aufgeben() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
