@@ -11,7 +11,7 @@ public class Spieler implements ISpieler {
 
 	// List<List<String>> strArray = ArrayList<List<String>> ();
 
-	int XX;
+	
 
 	int posX;
 	int posY;
@@ -29,6 +29,7 @@ public class Spieler implements ISpieler {
 
 	public Spieler(int x) {
 		
+		String name = this.name;
 
 		if (x == 0) {
 

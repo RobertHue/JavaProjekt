@@ -11,8 +11,16 @@ public class Spiel implements ISpiel {
 	ISpieler aktiverSpieler;
 	ISpielFeld spielFeld;
 	ISpieler gegnerSpieler;
+	IController controller;
 	
 	
+	public Spiel (String nameSP1, String nameSP2) {
+		
+		
+		
+		
+		
+	}
 	
 	
 	public ISpieler gibIstAmZug() { 
@@ -75,23 +83,44 @@ public class Spiel implements ISpiel {
 		
 		 
 		
-		// TODO Auto-generated method stub
 		return fehlercode;
 	}
 
 	public void zugBeenden() {
-		// TODO Auto-generated method stub 		Für den nächsten Spieler gleich Springcheck
-
+		
+		ISpieler substitute = aktiverSpieler;
+		
+		 gegnerSpieler = aktiverSpieler;
+		aktiverSpieler = substitute;
+		
+		spielFeld.updateStatus(aktiverSpieler);
+		
+		
+		this.spielFeld.bewegeNach(SpielStein, this.SpielStein.gibPosX(), this.SpielStein.gibPosY());
+		 
+		
+		
 	}
 
 	public void neustarten() {
-		// TODO Auto-generated method stub
 
+		this.controller.neustarten(true);
+		
 	}
 
 	public void aufgeben() {
-		// TODO Auto-generated method stub
+		
+		this.controller.aufgeben(true);
 
 	}
 
+	// setzName
+	
+
+//	public String setzeName() {
+//
+//		
+//		
+//		return this.name;
+//	}
 }
