@@ -1,5 +1,4 @@
 package ro.inf.p2.project;
-import java.util.ArrayList;
 
 /**
 *@author Pascal Zimmermann, Maxi Bottin
@@ -11,11 +10,10 @@ public class Controller implements IController {
 	IPopUp popup;
 	ISpielfeldAnzeige anzeige;
 	ISpiel spiel;
-	IController control;
 	
 	//Konstruktor
 	public  Controller(){
-		IPopUp popup = new PopUp(control);
+		popup = new PopUp(this);
 		popUpAufrufen(1, null);
 		
 	
@@ -66,8 +64,8 @@ public class Controller implements IController {
 		if (anzeige != null)
 		{
 			anzeige.fokusAus();
-			popup.popUpAufrufen(code, spieler);
 		}
+		popup.popUpAufrufen(code, spieler);
 
 
 		
@@ -145,8 +143,8 @@ public class Controller implements IController {
 	
 	public void neuesSpielStarten(String name1, String name2){
 
-		ISpiel spiel = new Spiel(name1, name2);
-		ISpielfeldAnzeige anzeige = new SpielfeldAnzeige(control);
+		spiel = new Spiel(name1, name2);
+		anzeige = new SpielfeldAnzeige(this);
 		anzeige.neuZeichnen(spiel.gibSpielFigurenWeiss(), spiel.gibSpielFigurenSchwarz(),
 				spiel.gibIstAmZug().gibName(), spiel.gibSelektierteFigur());
 		
