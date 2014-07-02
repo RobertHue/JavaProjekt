@@ -5,15 +5,25 @@ import java.util.Iterator;
 
 public class Spiel implements ISpiel {
 
-	ISpielFigur selectierterSpielStein;
-	ISpieler aktiverSpieler;
-	ISpielFeld spielFeld;
-	ISpieler gegnerSpieler;
-	IController controller;
+	ISpielFigur selectierterSpielStein = null;
+	ISpieler aktiverSpieler= null;
+	ISpielFeld spielFeld= null;
+	ISpieler gegnerSpieler= null;
+	IController controller= null;
 
+	//static final ArrayList<ISpieler> spielerSchwarz = new ArrayList<ISpieler>();
+//	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+
+	//spielerSchwarz = new Spieler(name, 0);
+	//spielerWeiss = new Spieler(name,0);
 	
-	static final ArrayList<ISpielFigur> spielerSchwarz = new ArrayList<ISpielFigur>();
-	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+	
+	
+	
+//	
+//	spielerSchwarz = new Spieler(nameSpieler1, 0);	
+//	spielerWeiss   = new Spieler(nameSpieler2, 1);
+//	
 	
 	
 	
@@ -24,7 +34,7 @@ public class Spiel implements ISpiel {
 	 */
 	public boolean gibKannSpringen(ISpielFigur gibSelektierteFigur) {
 
-		return  spielFeld.kannSpielFigurSpringen(selectierterSpielStein);  //this.gibKannSpringen(selectierterSpielStein);
+		return spielFeld.kannSpielFigurSpringen(selectierterSpielStein); // this.gibKannSpringen(selectierterSpielStein);
 	}
 
 	/**
@@ -47,10 +57,14 @@ public class Spiel implements ISpiel {
 	 * @param nameSP1
 	 * @param nameSP2
 	 */
-	public Spiel(String nameSP1, String nameSP2) {
+	public Spiel(String nameSpieler1, String nameSpieler2) {
 
-		spielFeld  = new SpielFeld(nameSP1, nameSP2);
-
+		spielFeld = new SpielFeld(nameSpieler1, nameSpieler2);
+//		
+//		ISpieler spielerSchwarz = new Spieler(nameSpieler1, 0);	
+//		ISpieler spielerWeiss   = new Spieler(nameSpieler2, 1);
+//		
+		
 	}
 
 	/**
@@ -73,11 +87,11 @@ public class Spiel implements ISpiel {
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz() {
-		return spielerSchwarz;
+		return this.aktiverSpieler.gibFiguren();//   spielerSchwarz;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenWeiss() {
-		return spielerWeiss;
+		return this.aktiverSpieler.gibFiguren();  //spielerWeiss;
 	}
 
 	/**
@@ -87,11 +101,11 @@ public class Spiel implements ISpiel {
 	 */
 	public ISpieler pruefeObGewonnen() { // Winning logic
 
-		if (this.spielerSchwarz.isEmpty() == true) {
+		if (this.gibSpielFigurenSchwarz().isEmpty() == true) {
 
 			return aktiverSpieler;
 
-		} else if (this.spielerWeiss.isEmpty() == true) {
+		} else if (this.gibSpielFigurenWeiss().isEmpty() == true) {
 			return aktiverSpieler;
 		}
 
@@ -113,17 +127,33 @@ public class Spiel implements ISpiel {
 	 */
 	public ISpielFigur gibSelektierteFigur() {
 
-		  spielFeld.figurSelektieren(aktiverSpieler,
+		spielFeld.figurSelektieren(aktiverSpieler,
 				this.selectierterSpielStein.gibPosX(),
 				selectierterSpielStein.gibPosY());
-		
-		
-//		
-//		this.spielFeld.figurSelektieren(aktiverSpieler,
-//				this.selectierterSpielStein.gibPosX(),
-//				selectierterSpielStein.gibPosY());
 
-		return selectierterSpielStein;
+		ArrayList<ISpielFigur> tmp = spielFeld.gibAlleSpielFiguren();
+
+		Iterator<ISpielFigur> i = tmp.iterator();
+
+		while (i.hasNext()) {
+
+			ISpielFigur sucheSelktierteFigur = i.next();
+
+			if (sucheSelktierteFigur.gibPosX() == selectierterSpielStein
+					.gibPosX()
+					&& sucheSelktierteFigur.gibPosY() == selectierterSpielStein
+							.gibPosY()) {
+
+				return this.selectierterSpielStein = sucheSelktierteFigur;
+
+			}
+			//
+			// this.spielFeld.figurSelektieren(aktiverSpieler,
+			// this.selectierterSpielStein.gibPosX(),
+			// selectierterSpielStein.gibPosY());
+
+		} // selectierterSpielStein;
+		return null;
 	}
 
 	/**
@@ -164,41 +194,36 @@ public class Spiel implements ISpiel {
 	 */
 	public void zugBeenden() {
 
-		ISpieler tmp = null;
-		aktiverSpieler = tmp  ;
-
-		aktiverSpieler = gegnerSpieler  ;
+		ISpieler tmp = aktiverSpieler;
+		aktiverSpieler = gegnerSpieler;
 		gegnerSpieler = tmp;
 
-		
 		selectierterSpielStein = null;
-		
-		
-		
-		
+
 		spielFeld.updateSprungFaehigkeiten(aktiverSpieler);
 
-		this.spielFeld.bewegeNach(selectierterSpielStein,
-				this.selectierterSpielStein.gibPosX(),
-				this.selectierterSpielStein.gibPosY());
-
 	}
-/**
- * Setzt für den Controller das neustarten auf true, das der weiss ja jetzt neustarten  
- */
+
+	/**
+	 * Setzt für den Controller das neustarten auf true, das der weiss ja jetzt
+	 * neustarten
+	 */
 	public void neustarten() {
 
-		this.controller.neuesSpielStarten(this.aktiverSpieler.gibName(), this.gegnerSpieler.gibName()); ;
+		this.controller.neuesSpielStarten(this.aktiverSpieler.gibName(),
+				this.gegnerSpieler.gibName());
+		;
 
 	}
-/**
- * Setzt für den Controller das aufgeben  auf true , das der weiss ja jetzt aufgeben
- */
+
+	/**
+	 * Setzt für den Controller das aufgeben auf true , das der weiss ja jetzt
+	 * aufgeben
+	 */
 	public void aufgeben() {
 
 		this.controller.ende(true);
 
 	}
 
-	
 }
