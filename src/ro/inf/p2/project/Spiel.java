@@ -6,27 +6,28 @@ import java.util.Iterator;
 public class Spiel implements ISpiel {
 
 	ISpielFigur selectierterSpielStein = null;
-	ISpieler aktiverSpieler= null;
-	ISpielFeld spielFeld= null;
-	ISpieler gegnerSpieler= null;
-	IController controller= null;
+	ISpieler aktiverSpieler = null;
+	ISpielFeld spielFeld = null;
+	ISpieler gegnerSpieler = null;
+	IController controller = null;
 
-	//static final ArrayList<ISpieler> spielerSchwarz = new ArrayList<ISpieler>();
-//	static final ArrayList<ISpielFigur> spielerWeiss = new ArrayList<ISpielFigur>();
+	boolean aufgabe = false;
+	boolean selektierungsCheck = false; // Ein Check ob figur selektieren
+										// schonaufgerufen wurde
 
-	//spielerSchwarz = new Spieler(name, 0);
-	//spielerWeiss = new Spieler(name,0);
-	
-	
-	
-	
-//	
-//	spielerSchwarz = new Spieler(nameSpieler1, 0);	
-//	spielerWeiss   = new Spieler(nameSpieler2, 1);
-//	
-	
-	
-	
+	// static final ArrayList<ISpieler> spielerSchwarz = new
+	// ArrayList<ISpieler>();
+	// static final ArrayList<ISpielFigur> spielerWeiss = new
+	// ArrayList<ISpielFigur>();
+
+	// spielerSchwarz = new Spieler(name, 0);
+	// spielerWeiss = new Spieler(name,0);
+
+	//
+	// spielerSchwarz = new Spieler(nameSpieler1, 0);
+	// spielerWeiss = new Spieler(nameSpieler2, 1);
+	//
+
 	// gibKannSpringen () wieder soon schubser nach SpielFeld
 
 	/**
@@ -60,11 +61,11 @@ public class Spiel implements ISpiel {
 	public Spiel(String nameSpieler1, String nameSpieler2) {
 
 		spielFeld = new SpielFeld(nameSpieler1, nameSpieler2);
-//		
-//		ISpieler spielerSchwarz = new Spieler(nameSpieler1, 0);	
-//		ISpieler spielerWeiss   = new Spieler(nameSpieler2, 1);
-//		
-		
+		//
+		// ISpieler spielerSchwarz = new Spieler(nameSpieler1, 0);
+		// ISpieler spielerWeiss = new Spieler(nameSpieler2, 1);
+		//
+
 	}
 
 	/**
@@ -75,23 +76,30 @@ public class Spiel implements ISpiel {
 		return aktiverSpieler;
 	}
 
-	/**
-	 * prüft Obgewonen() bei null wurde noch nicht gewonnen
-	 */
-	public boolean hatGewonnen() {
-
-		if (pruefeObGewonnen() != null) {
-			return true;
-		} else
-			return false;
-	}
-
 	public ArrayList<ISpielFigur> gibSpielFigurenSchwarz() {
-		return this.aktiverSpieler.gibFiguren();//   spielerSchwarz;
+		// return this.aktiverSpieler.gibFiguren();
+		return this.spielFeld.gibSpielerSchwarz().gibFiguren();
+		// spielerSchwarz;
 	}
 
 	public ArrayList<ISpielFigur> gibSpielFigurenWeiss() {
-		return this.aktiverSpieler.gibFiguren();  //spielerWeiss;
+		return this.spielFeld.gibSpielerWeiss().gibFiguren(); // spielerWeiss;
+	}
+
+	/**
+	 * Sieht nach ob aufgeben aufgerufen wurde , wenn nicht wird noch
+	 * pruefeobgewonnen geprüft und wenn keines true ist hat noch keiner
+	 * gewonnen
+	 */
+	public boolean hatGewonnen() {
+
+		if (aufgabe == true) {
+			return true;
+		} else if (pruefeObGewonnen() != null) {
+
+			return true;
+		} else
+			return false;
 	}
 
 	/**
@@ -123,46 +131,13 @@ public class Spiel implements ISpiel {
 	}
 
 	/**
-	 * Gibt die selectierte Spielfigur zurück mit Posx und PosY
-	 */
-	public ISpielFigur gibSelektierteFigur() {
-
-		spielFeld.figurSelektieren(aktiverSpieler,
-				this.selectierterSpielStein.gibPosX(),
-				selectierterSpielStein.gibPosY());
-
-		ArrayList<ISpielFigur> tmp = spielFeld.gibAlleSpielFiguren();
-
-		Iterator<ISpielFigur> i = tmp.iterator();
-
-		while (i.hasNext()) {
-
-			ISpielFigur sucheSelktierteFigur = i.next();
-
-			if (sucheSelktierteFigur.gibPosX() == selectierterSpielStein
-					.gibPosX()
-					&& sucheSelktierteFigur.gibPosY() == selectierterSpielStein
-							.gibPosY()) {
-
-				return this.selectierterSpielStein = sucheSelktierteFigur;
-
-			}
-			//
-			// this.spielFeld.figurSelektieren(aktiverSpieler,
-			// this.selectierterSpielStein.gibPosX(),
-			// selectierterSpielStein.gibPosY());
-
-		} // selectierterSpielStein;
-		return null;
-	}
-
-	/**
 	 * Prüft denn fehlercode, bei 0 ist OK. Geht mit dem Iterator durch die
 	 * Figuren Liste und sucht nach der selektierten Figur mit der PosXY werten,
 	 * wenn gefunden wird die figur der selectiertenFigur zugewiessen. Sonst
 	 * return fehlercode
 	 */
 	public int figurSelektieren(int posX, int posY) {
+		
 
 		int fehlercode = spielFeld.figurSelektieren(aktiverSpieler, posX, posY);
 
@@ -180,11 +155,59 @@ public class Spiel implements ISpiel {
 						&& sucheSelktierteFigur.gibPosY() == posY) {
 
 					this.selectierterSpielStein = sucheSelktierteFigur;
+					
+					selektierungsCheck = true;   // Nur selektierungsCheck falls es funktionierte
 				}
 			}
 		}
 
 		return fehlercode;
+	}
+
+	/**
+	 * Gibt die selectierte Spielfigur zurück mit Posx und PosY
+	 */
+	public ISpielFigur gibSelektierteFigur() {
+
+		if (selektierungsCheck = false) {
+			return null;
+
+		} else
+
+			selektierungsCheck = false; // zurücksetzen des selektierungsCheck
+
+		return selectierterSpielStein;
+
+		//
+		//
+		// //
+		// // spielFeld.figurSelektieren(aktiverSpieler,
+		// // this.selectierterSpielStein.gibPosX(),
+		// // selectierterSpielStein.gibPosY());
+		// //
+		// // ArrayList<ISpielFigur> tmp = spielFeld.gibAlleSpielFiguren();
+		// //
+		// // Iterator<ISpielFigur> i = tmp.iterator();
+		// //
+		// // while (i.hasNext()) {
+		// //
+		// // ISpielFigur sucheSelktierteFigur = i.next();
+		// //
+		// // if (sucheSelktierteFigur.gibPosX() == selectierterSpielStein
+		// // .gibPosX()
+		// // && sucheSelktierteFigur.gibPosY() == selectierterSpielStein
+		// // .gibPosY()) {
+		// //
+		// // return this.selectierterSpielStein = sucheSelktierteFigur;
+		//
+		// }
+		// //
+		// // this.spielFeld.figurSelektieren(aktiverSpieler,
+		// // this.selectierterSpielStein.gibPosX(),
+		// // selectierterSpielStein.gibPosY());
+		//
+		// } // selectierterSpielStein;
+
 	}
 
 	/**
@@ -210,9 +233,12 @@ public class Spiel implements ISpiel {
 	 */
 	public void neustarten() {
 
-		this.controller.neuesSpielStarten(this.aktiverSpieler.gibName(),
-				this.gegnerSpieler.gibName());
-		;
+		// this.controller.neuesSpielStarten(this.aktiverSpieler.gibName(),
+		// this.gegnerSpieler.gibName());
+		//
+
+		spielFeld = new SpielFeld(aktiverSpieler.gibName(),
+				gegnerSpieler.gibName());
 
 	}
 
@@ -222,9 +248,14 @@ public class Spiel implements ISpiel {
 	 */
 	public void aufgeben() {
 
-		this.controller.ende(true);
+		aufgabe = true;
 
-		this.controller.popUpAufrufen(4, gegnerSpieler.gibName());;
+		hatGewonnen();
+
+		// this.controller.ende(true);
+		//
+		// this.controller.popUpAufrufen(4, gegnerSpieler.gibName());
+		// ;
 	}
 
 }
