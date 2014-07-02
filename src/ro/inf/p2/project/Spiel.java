@@ -224,6 +224,7 @@ public class Spiel implements ISpiel {
 
 		this.controller.ende(true);
 
+		this.controller.popUpAufrufen(4, gegnerSpieler.gibName());;
 	}
 
 }
