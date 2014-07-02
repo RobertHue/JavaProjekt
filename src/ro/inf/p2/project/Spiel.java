@@ -224,7 +224,7 @@ public class Spiel implements ISpiel {
 		selectierterSpielStein = null;
 
 		spielFeld.updateSprungFaehigkeiten(aktiverSpieler);
-
+ 
 	}
 
 	/**
